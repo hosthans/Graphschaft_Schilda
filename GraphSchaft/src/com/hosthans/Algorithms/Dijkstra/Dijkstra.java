@@ -16,7 +16,6 @@ public class Dijkstra {
     Map<Vertex ,DijkstraNode> nodeset = new HashMap<>();
     List<DijkstraNode> helper = new ArrayList<>();
     PriorityQueue<DijkstraNode> Q = new PriorityQueue<>();
-    PriorityQueue<DijkstraNode> NodeQueue = new PriorityQueue<>();
 
 
     List<DijkstraNode> ergebnisListe = new ArrayList<>();
@@ -37,6 +36,7 @@ public class Dijkstra {
             nodeset.put(v, node);
             Q.add(node);
             helper.add(node);
+            ergebnisListe.add(node);
         }
 
         //Startknoten auf 0 setzen --> in Queue geben
@@ -67,32 +67,42 @@ public class Dijkstra {
 
             //niedrigster rausnehmen
             DijkstraNode currentNode = Q.poll();
+            helper.remove(currentNode);
 
-            //testausgabe
-            System.out.println("Der Knoten mit dem niedrigsten Wert is : " + currentNode.toString());
+            List<Node> adjList = graph.graph.get(currentNode.v);
 
+            for (Node v : adjList){
+                DijkstraNode ref = null;
 
-            List<DijkstraNode> currentNeighbours = new ArrayList<>();
+                for (int i = 0; i<helper.size(); i++){
+                    if (helper.get(i).getV() == v.getE().dest){
+                        ref = helper.get(i);
+                    }
+                }
+                if (helper.contains(ref)){
+                    int alternative = currentNode.getWeight() + v.getE().weight;
 
-
-            //alle Nachbarn des niedrigsten
-            for (int i = 0; i<graph.graph.get(currentNode.v).size(); i++){
-                Node current = graph.graph.get(currentNode.v).get(i);
-                System.out.println("Ein Nachbar von " + currentNode.v.getLabel() + "  ist : "  + graph.graph.get(currentNode.v).get(i));
-                currentNeighbours.add(nodeset.get(current.dest));
-
+                    if (alternative < ref.getWeight()){
+                        ref.setWeight(alternative);
+                        ref.setPredecessor(currentNode);
+                    }
+                }
             }
 
 
-            //Hinzufügen in NodeQueue
-            NodeQueue.add(currentNode);
 
-            //löschen aus Hilfe
-            helper.remove(currentNode);
-            nodeset.remove(currentNode.v);
+        }
 
+        Collections.sort(ergebnisListe, new Comparator<DijkstraNode>() {
+            @Override
+            public int compare(DijkstraNode o1, DijkstraNode o2) {
+                return o1.weight.compareTo(o2.weight);
+            }
+        });
 
+        for (int i = 0; i<ergebnisListe.size(); i++){
 
+            System.out.println(ergebnisListe.get(i).toString());
         }
 
 

@@ -7,7 +7,7 @@ public class DijkstraNode implements Comparable<DijkstraNode>{
 
     Vertex v;
     Integer weight;
-    QNode predecessor;
+    DijkstraNode predecessor;
 
     public DijkstraNode(Vertex v, Integer weight){
         this.v = v;
@@ -23,11 +23,11 @@ public class DijkstraNode implements Comparable<DijkstraNode>{
     }
 
     //Predecessor
-    public QNode getPredecessor(){
+    public DijkstraNode getPredecessor(){
         return this.predecessor;
     }
 
-    public void setPredecessor(QNode qNode){
+    public void setPredecessor(DijkstraNode qNode){
         this.predecessor = qNode;
     }
 
