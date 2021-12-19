@@ -1,16 +1,18 @@
 package com.hosthans.Algorithms.FordFulkersonAlgorithm;
 
-import com.hosthans.Graph.Graph;
+import com.hosthans.Graph.Graph_notCapacitive;
 import com.hosthans.Graph.Node;
 import com.hosthans.Graph.Vertex;
 
 public class FordFulkerson {
 
-    Graph graph;
+    Graph_notCapacitive graph;
     Vertex Quelle;
     Vertex Senke;
 
-    public FordFulkerson(String Quelle, String Senke, Graph graph){
+
+
+    public FordFulkerson(String Quelle, String Senke, Graph_notCapacitive graph){
         this.graph = graph;
         this.Quelle = graph.Knoten.get(Quelle);
         this.Senke = graph.Knoten.get(Senke);

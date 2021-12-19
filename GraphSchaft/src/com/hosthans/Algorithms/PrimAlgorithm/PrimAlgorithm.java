@@ -1,6 +1,6 @@
 package com.hosthans.Algorithms.PrimAlgorithm;
 
-import com.hosthans.Graph.Graph;
+import com.hosthans.Graph.Graph_notCapacitive;
 import com.hosthans.Graph.Node;
 import com.hosthans.Graph.Vertex;
 
@@ -15,14 +15,14 @@ public class PrimAlgorithm {
     final String ANSI_BLACK = "\u001B[30m";
 
 
-    Graph g;
+    Graph_notCapacitive g;
     //Datentyp für die priorisierte Abarbeitung der Einträge
     PriorityQueue<QNode> priorityQueue = new PriorityQueue<>();
     //Hilfliste --> speichert alle Knoten zwischen (für Größe usw benötigt)
     List<QNode> Helper = new ArrayList<QNode>();
     List<QNode> visited = new ArrayList<>();
 
-    public PrimAlgorithm(Graph g){
+    public PrimAlgorithm(Graph_notCapacitive g){
         this.g = g;
     }
 

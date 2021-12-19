@@ -42,9 +42,9 @@ public class testGraphwoutInput {
 
     public boolean hasEdge(Vertex source, Vertex dest) {
         /*if(graph.get(source).contains(dest)) {
-            System.out.println("Graph hat eine Kante zwischen " + source.getLabel() + " und " + dest.getLabel());
+            System.out.println("Graph_notCapacitive hat eine Kante zwischen " + source.getLabel() + " und " + dest.getLabel());
         }else {
-            System.out.println("Graph hat keine Kante zwischen " + source.getLabel() + " und " + dest.getLabel());
+            System.out.println("Graph_notCapacitive hat keine Kante zwischen " + source.getLabel() + " und " + dest.getLabel());
         }*/
         //durch Liste aller Knoten interieren
         for (Vertex v : graph.keySet()){
@@ -58,9 +58,9 @@ public class testGraphwoutInput {
 
     public void hasVertex(Vertex v){
         if(graph.containsKey(v)) {
-            System.out.println("Graph beinhaltet " + v.getLabel() + " als ein Knoten");
+            System.out.println("Graph_notCapacitive beinhaltet " + v.getLabel() + " als ein Knoten");
         }else {
-            System.out.println("Graph beinhaltet nicht " + v.getLabel() + " als ein Knoten");
+            System.out.println("Graph_notCapacitive beinhaltet nicht " + v.getLabel() + " als ein Knoten");
         }
     }
 

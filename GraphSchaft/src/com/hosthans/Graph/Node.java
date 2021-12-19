@@ -2,7 +2,7 @@ package com.hosthans.Graph;
 
 public class Node {
     Edge e;
-    Vertex dest;
+    public Vertex dest;
 
     public Node(Edge e, Vertex v){
         this.e = e;
