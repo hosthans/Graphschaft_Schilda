@@ -29,6 +29,7 @@ public class Dijkstra {
         doAlgorithm();
     }
 
+
     public void initialize(){
 
         for (Vertex v : graph.getGraphMap().keySet()){

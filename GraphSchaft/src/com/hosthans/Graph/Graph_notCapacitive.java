@@ -68,7 +68,7 @@ public class Graph_notCapacitive {
                 Integer weight = weightingscan.nextInt();
 
 
-                addEdge(Knoten.get(Anfangsknoten), Knoten.get(Zielknoten), isbidirectional, weight, weight);
+                addEdge(Knoten.get(Anfangsknoten), Knoten.get(Zielknoten), isbidirectional, weight);
 
 
 
@@ -90,7 +90,7 @@ public class Graph_notCapacitive {
                 Integer weight = null;
 
 
-                addEdge(Knoten.get(Anfangsknoten), Knoten.get(Zielknoten), isbidirectional, weight, weight);
+                addEdge(Knoten.get(Anfangsknoten), Knoten.get(Zielknoten), isbidirectional, weight);
 
 
 
@@ -106,12 +106,12 @@ public class Graph_notCapacitive {
         graph.put(vertex, new LinkedList<Node>());
     }
 
-    public void addEdge(Vertex source, Vertex destination, boolean biDirectional, Integer weight, Integer capacity) throws IOException {
+    public void addEdge(Vertex source, Vertex destination, boolean biDirectional, Integer weight) throws IOException {
         //gewichtet
             //nur gebraucht wenn gerichtet
-            Edge e = new Edge(source, destination, weight, capacity);
+            Edge e = new Edge(source, destination, weight, null);
             //wenn ungerichtet
-            Edge e2 = new Edge(destination, source, weight, capacity);
+            Edge e2 = new Edge(destination, source, weight, null);
 
             Node n1 = new Node(e, destination);
             Node n2 = new Node(e2, source);
@@ -125,11 +125,24 @@ public class Graph_notCapacitive {
                 System.out.println("Destination from Edge:" + destination);
             }
 
-            graph.get(source).add(n1);
+
+
+            if (!graph.get(source).contains(n1)){
+                graph.get(source).add(n1);
+            }
+
+
             if(biDirectional) {
                 graph.get(destination).add(n2);
             }
 
+    }
+
+    public void addReverseEdge(Vertex v, Vertex dest){
+        Edge e = new Edge(v, dest, 0, null);
+        Node n = new Node(e, dest);
+
+        graph.get(v).add(n);
     }
 
 
