@@ -19,4 +19,8 @@ public class Node {
     }
 
 
+    public Vertex getDest(){
+        return this.dest;
+    }
+
 }

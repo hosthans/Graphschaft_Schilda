@@ -13,8 +13,8 @@ public class Edge {
         this.capacity = capacity;
     }
 
-    public String getDest(){
-        return this.dest.getLabel();
+    public Vertex getDest(){
+        return this.dest;
     }
 
     public Integer getWeight(){
