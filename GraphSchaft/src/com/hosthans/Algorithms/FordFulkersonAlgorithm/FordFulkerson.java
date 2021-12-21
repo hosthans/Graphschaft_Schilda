@@ -3,17 +3,21 @@ package com.hosthans.Algorithms.FordFulkersonAlgorithm;
 import com.hosthans.Graph.*;
 
 import java.io.IOException;
-import java.sql.ClientInfoStatus;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class FordFulkerson {
 
     Graph_notCapacitive graph;
     Vertex Quelle;
     Vertex Senke;
-
     Graph_notCapacitive residual;
+
+
+
+
+
+    int maxFlow = 0;
+
 
 
 
@@ -43,22 +47,44 @@ public class FordFulkerson {
 
 
         System.out.println(residual.printGraph());
+        doAlgorithm();
 
     }
 
     public void doAlgorithm(){
-        for (Vertex v : graph.graph.keySet()){
-            for (Node n : graph.graph.get(v)){
-                n.getE().weight = 0;
-            }
-        }
-        //test if it works (every flow set to null)
-        /*
-        for (Vertex v : graph.graph.keySet()){
-            for (Node n : graph.graph.get(v)){
-                System.out.println(n.getE().weight);
-            }
-        }*/
+        //System.out.println(Breitensuche(Quelle, Senke));
     }
 
+
+    /*public boolean Breitensuche (Vertex start, Vertex ende){
+        LinkedList<Vertex> queue = new LinkedList<>();
+        queue.push(start);
+        ArrayList<Vertex> list2 = new ArrayList<>();
+        list2.add(start);
+        start.setVisited(true);
+        while(!queue.isEmpty()){
+            Vertex temp = queue.pop();
+            if(temp==ende){
+                for (int i = 0; i<list2.size(); i++){
+                    System.out.println(list2.get(i).getLabel());
+                }
+                return true;
+            }
+            List<Node> list = graph.getNeighbors(temp);
+            for(int i=0;i<list.size();i++){
+                if(!list.get(i).dest.isVisited()){
+                    queue.push(list.get(i).dest);
+                    list2.add(list.get(i).dest);
+                }
+            }
+        }
+
+        return false;
+    }*/
+
+
+
+    public void solve(){
+
+    }
 }

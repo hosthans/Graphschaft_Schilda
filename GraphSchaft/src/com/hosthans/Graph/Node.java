@@ -4,6 +4,7 @@ public class Node {
     Edge e;
     public Vertex dest;
 
+
     public Node(Edge e, Vertex v){
         this.e = e;
         this.dest = v;
@@ -16,4 +17,6 @@ public class Node {
     public Edge getE(){
         return this.e;
     }
+
+
 }

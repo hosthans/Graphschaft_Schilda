@@ -109,9 +109,9 @@ public class Graph_notCapacitive {
     public void addEdge(Vertex source, Vertex destination, boolean biDirectional, Integer weight) throws IOException {
         //gewichtet
             //nur gebraucht wenn gerichtet
-            Edge e = new Edge(source, destination, weight, null);
+            Edge e = new Edge(source, destination, weight, 0);
             //wenn ungerichtet
-            Edge e2 = new Edge(destination, source, weight, null);
+            Edge e2 = new Edge(destination, source, weight, 0);
 
             Node n1 = new Node(e, destination);
             Node n2 = new Node(e2, source);
