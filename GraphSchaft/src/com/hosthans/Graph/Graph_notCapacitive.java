@@ -9,7 +9,13 @@ public class Graph_notCapacitive {
     public Map<Vertex, List<Node>> graph = new HashMap<>();
     public Map<String, Vertex> Knoten = new HashMap<>();
 
+    Vertex ungerade;
+
     Integer nodecount = 0;
+    Integer edgecount = 0;
+
+
+    boolean hasedges;
 
     public boolean isbidirectional;
     public boolean isweighted;
@@ -223,4 +229,28 @@ public class Graph_notCapacitive {
         }
         return null;
     }
+
+    public Vertex getungeraden(){
+
+        for (Vertex v : graph.keySet()){
+            if (graph.get(v).size()%2 != 0){
+                ungerade = v;
+            }
+        }
+        return ungerade;
+    }
+
+
+    public boolean hasEdges(){
+
+        int count = 0;
+        for (Vertex v : graph.keySet()){
+            count = count + graph.get(v).size();
+        }
+        if (count!=0){
+            return true;
+        }
+        return true;
+    }
+
 }

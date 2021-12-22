@@ -5,11 +5,9 @@ import com.hosthans.Graph.Graph_notCapacitive;
 import com.hosthans.Graph.Node;
 import com.hosthans.Graph.Vertex;
 
-import java.awt.print.PrinterAbortException;
-import java.security.Principal;
 import java.util.*;
 
-public class Euler {
+public class Hierholzer {
     Graph_notCapacitive graph;
     int EulerTest = 0;
     List<List<Vertex>> cyclesVertex = new LinkedList<>();
@@ -19,7 +17,7 @@ public class Euler {
     List<Edge> eulercircuitedges = new ArrayList<>();
     List<Vertex> eulerCircuitVertieces = new ArrayList<>();
 
-    public Euler(Graph_notCapacitive graph){
+    public Hierholzer(Graph_notCapacitive graph){
         this.graph = graph;
         checkEuler();
     }
@@ -30,14 +28,116 @@ public class Euler {
             EulerTest = EulerTest+ergebnis;
         }
         if (EulerTest>0){
-            makeEulerFaehig();
+            EulerWeg();
+            EulerWegBerechnen();
+            promptResult();
         } else {
             Euler();
         }
+
     }
 
-    public void makeEulerFaehig(){
-        System.out.println("Muss gemacht werden - nicht alle Knoten Geraden Grad");
+    public void EulerWeg(){
+        //System.out.println("Muss gemacht werden - nicht alle Knoten Geraden Grad");
+            int counter = 0;
+            //Zufallsknoten als Startknoten wählen (muss ungeraden Grad haben)
+
+            Vertex start = graph.getungeraden();
+            //Testausgabe
+            System.out.println(start.getLabel());
+
+            Vertex currentcycleStartAEnd = start;
+            Vertex currentVertex = currentcycleStartAEnd;
+
+            while (!graph.getEdgeSet().isEmpty()){
+                LinkedList<Vertex> currentCycleNodes = new LinkedList<Vertex>();
+                LinkedList<Edge> currentCycleEdges = new LinkedList<Edge>();
+                do {
+
+                    //aktuellen Knoten dem Zyklus hinzufügen
+                    currentCycleNodes.add(currentVertex);
+
+
+                    //Alle Kanten des Aktuellen Knotens ermitteln
+                    List<Node> edges = graph.getNeighbors(currentVertex);
+
+
+                    //falls keine Kante mehr vorhanden __> Graph nicht zusammenhängend
+                /*if (edges.isEmpty()){
+                    throw new IllegalArgumentException("graph muss zusammenhängend sein");
+                }*/
+
+                    //Zufälliger Kntoen aus Kantenliste
+                    int randomNumber;
+                    if (edges.size()>0){
+                        randomNumber = new Random().nextInt(edges.size());
+                    } else {
+                        break;
+                    }
+
+                    Node n = edges.get(randomNumber);
+                    Vertex from = n.getE().src;
+                    Vertex to = n.getDest();
+                    Edge nextEdge = n.getE();
+
+                    //Kante dem Zyklus anhöngen
+                    currentCycleEdges.add(nextEdge);
+
+                    //Kante gesehen (löschen)
+                    graph.removeEdge(from, to, n);
+
+                    //nächsten Kntoen herausfinden
+                    if (nextEdge.src != currentVertex){
+                        currentVertex = nextEdge.src;
+                    } else {
+                        currentVertex = nextEdge.getDest();
+                    }
+
+
+
+
+                    //Geht solange bis Zyklus wieder am Startknoten ist
+
+
+                    //wird benötigt, da Ergebnis sonst falsch (Bricht ab und fängt neuen Zyklus bei Startknoten an)
+                } while (graph.hasEdges());
+                //Brauch letzten JKnoten nicht hinzufügen, da dieser ja dem ersten entspricht
+
+
+                currentCycleNodes.add(currentcycleStartAEnd);
+
+                //Zyklus zu Zyklusliste adden
+                this.cyclesVertex.add(currentCycleNodes);
+                this.cyclesEdges.add(currentCycleEdges);
+
+                //Durch alle Knoten iterieren, ob man noch Knoten mit Kanten hat, die nicht verwendet wurden
+                if (!this.graph.getEdgeSet().isEmpty()){
+                    for (Vertex v : graph.graph.keySet()){
+                        if (graph.graph.get(v).size() > 0){
+                            currentcycleStartAEnd = v;
+                            currentVertex = currentcycleStartAEnd;
+                            break;
+                        }
+                    }
+                }
+            }
+
+    }
+
+    public void EulerWegBerechnen(){
+        //erst ersten Zyklus hinzufügen
+        this.eulerCircuitVertieces.addAll(this.cyclesVertex.get(0));
+        eulercircuitedges.addAll(this.cyclesEdges.get(0));
+
+        //alle anderen Zyklen hinzufügen
+        for (int i  = 1; i<this.cyclesVertex.size(); i++){
+            int index = this.eulerCircuitVertieces.indexOf(this.cyclesVertex.get(i).get(0));
+
+            this.eulerCircuitVertieces.remove(index);
+            this.eulerCircuitVertieces.addAll(index, this.cyclesVertex.get(i));
+
+            this.eulercircuitedges.addAll(index, this.cyclesEdges.get(i));
+        }
     }
 
     public void Euler(){
@@ -45,6 +145,7 @@ public class Euler {
         //hier EulerAlgorithmus
         searchcyrcles();
         EulerKreisBerechnen();
+        promptResult();
 
     }
 
@@ -74,9 +175,9 @@ public class Euler {
 
 
                 //falls keine Kante mehr vorhanden __> Graph nicht zusammenhängend
-                if (edges.isEmpty()){
+                /*if (edges.isEmpty()){
                     throw new IllegalArgumentException("graph muss zusammenhängend sein");
-                }
+                }*/
 
                 //Zufälliger Kntoen aus Kantenliste
                 int randomNumber = new Random().nextInt(edges.size());
@@ -136,7 +237,7 @@ public class Euler {
         for (int i  = 1; i<this.cyclesVertex.size(); i++){
             int index = this.eulerCircuitVertieces.indexOf(this.cyclesVertex.get(i).get(0));
 
-            this.eulerCircuitVertieces.remove(index);
+            //this.eulerCircuitVertieces.remove(index);
             this.eulerCircuitVertieces.addAll(index, this.cyclesVertex.get(i));
 
             this.eulercircuitedges.addAll(index, this.cyclesEdges.get(i));
