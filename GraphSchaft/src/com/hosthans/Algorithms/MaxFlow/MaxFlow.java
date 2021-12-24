@@ -1,30 +1,22 @@
-package com.hosthans.Algorithms.FordFulkersonAlgorithm;
+package com.hosthans.Algorithms.MaxFlow;
 
 import com.hosthans.Graph.*;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-public class FordFulkerson {
+public class MaxFlow {
 
     Graph_notCapacitive graph;
     Vertex Quelle;
     Vertex Senke;
     Graph_notCapacitive residual;
 
-
-
-
-
     int maxFlow = 0;
 
-
-
-
-
-
-
-    public FordFulkerson(String Quelle, String Senke, Graph_notCapacitive graph) throws IOException {
+    public MaxFlow(String Quelle, String Senke, Graph_notCapacitive graph) throws IOException {
         this.graph = graph;
         this.Quelle = graph.Knoten.get(Quelle);
         this.Senke = graph.Knoten.get(Senke);
@@ -36,6 +28,7 @@ public class FordFulkerson {
         }
     }
 
+    //erst initialisieren (hier mit residualgraph)
     public void initialize() throws IOException {
         for (Vertex v : graph.graph.keySet()){
             for (Node n : graph.graph.get(v)){
@@ -45,14 +38,12 @@ public class FordFulkerson {
             }
         }
 
-
         System.out.println(residual.printGraph());
-        doAlgorithm();
 
     }
 
-    public void doAlgorithm(){
-        //System.out.println(Breitensuche(Quelle, Senke));
+    public void doAlgorithm(Graph_notCapacitive graph, Vertex QUelle, Vertex Senke) throws IOException {
+
     }
 
 

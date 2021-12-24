@@ -1,6 +1,5 @@
 package com.hosthans.Graph;
 
-import com.hosthans.Algorithms.FordFulkersonAlgorithm.FordFulkerson;
 import com.hosthans.Algorithms.PrimAlgorithm.PrimAlgorithm;
 
 import java.io.IOException;
@@ -15,7 +14,7 @@ public class test {
         PrimAlgorithm prim = new PrimAlgorithm(gr);
         prim.doalgotithm();
 
-        //FordFulkerson ford = new FordFulkerson("a", "c", g);
+        //MaxFlow ford = new MaxFlow("a", "c", g);
 
     }
 }

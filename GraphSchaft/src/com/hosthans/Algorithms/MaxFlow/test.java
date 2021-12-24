@@ -1,4 +1,4 @@
-package com.hosthans.Algorithms.FordFulkersonAlgorithm;
+package com.hosthans.Algorithms.MaxFlow;
 
 import com.hosthans.Graph.Graph_notCapacitive;
 
@@ -8,7 +8,6 @@ public class test {
     public static void main(String[] args) throws IOException {
         Graph_notCapacitive graph = new Graph_notCapacitive(false, true);
         System.out.println(graph.printGraph());
-        System.out.println(graph.getGraphMap());
-        FordFulkerson ford = new FordFulkerson("a", "c", graph);
+        MaxFlow ford = new MaxFlow("a", "c", graph);
     }
 }
