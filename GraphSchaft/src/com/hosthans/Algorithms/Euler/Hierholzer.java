@@ -10,6 +10,7 @@ import java.util.*;
 public class Hierholzer {
     Graph_notCapacitive graph;
     int EulerTest = 0;
+    int Nodecount = 0;
     List<List<Vertex>> cyclesVertex = new LinkedList<>();
     List<List<Edge>> cyclesEdges = new LinkedList<>();
     Random random = new Random();
@@ -26,13 +27,16 @@ public class Hierholzer {
         for (Vertex v : graph.graph.keySet()){
             int ergebnis = graph.graph.get(v).size()%2;
             EulerTest = EulerTest+ergebnis;
+            Nodecount = Nodecount + 1;
         }
-        if (EulerTest>0){
+        if (EulerTest>0 && Nodecount>EulerTest){
             EulerWeg();
             EulerWegBerechnen();
             promptResult();
-        } else {
+        } else if (EulerTest == 0){
             Euler();
+        } else {
+            System.out.println("Fehler - Knotengrad passt nicht");
         }
 
     }
@@ -125,6 +129,7 @@ public class Hierholzer {
     }
 
     public void EulerWegBerechnen(){
+        System.out.println("Eulerweg: ");
         //erst ersten Zyklus hinzufügen
         this.eulerCircuitVertieces.addAll(this.cyclesVertex.get(0));
         eulercircuitedges.addAll(this.cyclesEdges.get(0));
@@ -229,6 +234,7 @@ public class Hierholzer {
 
     //Eulerkreis berechnen
     public void EulerKreisBerechnen(){
+        System.out.println("Eulerkreis: ");
         //erst ersten Zyklus hinzufügen
         this.eulerCircuitVertieces.addAll(this.cyclesVertex.get(0));
         eulercircuitedges.addAll(this.cyclesEdges.get(0));
