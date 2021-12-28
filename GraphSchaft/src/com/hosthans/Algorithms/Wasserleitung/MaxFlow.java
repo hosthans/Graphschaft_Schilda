@@ -14,6 +14,7 @@ public class MaxFlow {
     Vertex Senke;
     Graph_NOINPUT residual;
 
+
     int maxFlow = 0;
 
     public MaxFlow(String Quelle, String Senke, Graph_NOINPUT graph) throws IOException {
@@ -141,7 +142,7 @@ public class MaxFlow {
         return false;
     }
 
-    public void ford() throws IOException {
+    public int ford() throws IOException {
 
         while (PfadExistent(this.Quelle, this.Senke)){
             int flow = Integer.MAX_VALUE;
@@ -213,5 +214,7 @@ public class MaxFlow {
         }
 
         System.out.println(this.maxFlow);
+        return this.maxFlow;
     }
+
 }
