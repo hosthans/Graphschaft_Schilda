@@ -32,7 +32,8 @@ public class test {
         graph.addEdge(f,g,false,1);
 
 
-        MaxFlow mf = new MaxFlow(a, g, graph);
+
+        MaxFlow mf = new MaxFlow(a, g, graph, 8);
     }
 
 }

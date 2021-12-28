@@ -16,6 +16,7 @@ public class MaxFlow {
 
 
     int maxFlow = 0;
+    int needed;
 
     public MaxFlow(String Quelle, String Senke, Graph_NOINPUT graph) throws IOException {
         this.graph = graph;
@@ -26,13 +27,15 @@ public class MaxFlow {
         ford();
     }
 
-    public MaxFlow(Vertex Quelle, Vertex Senke, Graph_NOINPUT graph) throws IOException {
+    public MaxFlow(Vertex Quelle, Vertex Senke, Graph_NOINPUT graph, int needed) throws IOException {
         this.graph = graph;
         this.Quelle = Quelle;
         this.Senke = Senke;
         this.residual = graph;
+        this.needed = needed;
         initialize();
         ford();
+        getErgebnis(this.needed);
     }
 
     //erst initialisieren (hier mit residualgraph)
@@ -144,7 +147,7 @@ public class MaxFlow {
 
     public int ford() throws IOException {
 
-        while (PfadExistent(this.Quelle, this.Senke)){
+        while (PfadExistent(Quelle, Senke)){
             int flow = Integer.MAX_VALUE;
             LinkedList<Vertex> pfad = PfadErstellenBreitensuche(this.Quelle, this.Senke);
             int counter = 0;
@@ -215,6 +218,22 @@ public class MaxFlow {
 
         System.out.println(this.maxFlow);
         return this.maxFlow;
+    }
+
+    public boolean GenugPlatz(int needed){
+        if (this.maxFlow >= needed){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public void getErgebnis(int i){
+        if (!GenugPlatz(i)){
+            System.out.println("Das Netz kann maximal " + this.maxFlow + " m^3 Wasser fördern (pro Stunde) ---- somit reicht es NICHT aus für " + i + "." );
+        } else {
+            System.out.println("Das Netz kann maximal " + this.maxFlow + " m^3 Wasser fördern (pro Stunde) ---- somit reicht es aus für " + i + "." );
+        }
     }
 
 }
