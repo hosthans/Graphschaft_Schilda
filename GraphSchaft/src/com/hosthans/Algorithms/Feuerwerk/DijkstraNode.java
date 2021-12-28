@@ -1,6 +1,5 @@
-package com.hosthans.Algorithms.Dijkstra;
+package com.hosthans.Algorithms.Feuerwerk;
 
-import com.hosthans.Algorithms.PrimAlgorithm.QNode;
 import com.hosthans.Graph.Vertex;
 
 public class DijkstraNode implements Comparable<DijkstraNode>{

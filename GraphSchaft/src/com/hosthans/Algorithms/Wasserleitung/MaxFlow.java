@@ -1,22 +1,19 @@
-package com.hosthans.Algorithms.MaxFlow;
+package com.hosthans.Algorithms.Wasserleitung;
 
 import com.hosthans.Graph.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class MaxFlow {
 
-    Graph_notCapacitive graph;
+    Graph graph;
     Vertex Quelle;
     Vertex Senke;
-    Graph_notCapacitive residual;
+    Graph residual;
 
     int maxFlow = 0;
 
-    public MaxFlow(String Quelle, String Senke, Graph_notCapacitive graph) throws IOException {
+    public MaxFlow(String Quelle, String Senke, Graph graph) throws IOException {
         this.graph = graph;
         this.Quelle = graph.Knoten.get(Quelle);
         this.Senke = graph.Knoten.get(Senke);
@@ -42,7 +39,7 @@ public class MaxFlow {
 
     }
 
-    public void doAlgorithm(Graph_notCapacitive graph, Vertex QUelle, Vertex Senke) throws IOException {
+    public void doAlgorithm(Graph graph, Vertex QUelle, Vertex Senke) throws IOException {
 
     }
 

@@ -1,6 +1,6 @@
-package com.hosthans.Algorithms.Dijkstra;
+package com.hosthans.Algorithms.Feuerwerk;
 
-import com.hosthans.Graph.Graph_notCapacitive;
+import com.hosthans.Graph.Graph;
 import com.hosthans.Graph.Node;
 import com.hosthans.Graph.Vertex;
 
@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Dijkstra {
 
-    Graph_notCapacitive graph;
+    Graph graph;
     Vertex v;
     DijkstraNode startingNode;
 
@@ -23,7 +23,7 @@ public class Dijkstra {
 
 
 
-    public Dijkstra(String label, Graph_notCapacitive g){
+    public Dijkstra(String label, Graph g){
         this.graph = g;
         this.v = graph.Knoten.get(label);
         doAlgorithm();

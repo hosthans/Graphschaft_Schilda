@@ -1,4 +1,4 @@
-package com.hosthans.Algorithms.PrimAlgorithm;
+package com.hosthans.Algorithms.Straßenbau;
 
 import com.hosthans.Graph.Vertex;
 

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class Graph_notCapacitive {
+public class Graph {
     public Map<Vertex, List<Node>> graph = new HashMap<>();
     public Map<String, Vertex> Knoten = new HashMap<>();
 
@@ -22,7 +22,7 @@ public class Graph_notCapacitive {
 
 
 
-    public Graph_notCapacitive(Boolean isbidirectional, Boolean isweighted) throws IOException {
+    public Graph(Boolean isbidirectional, Boolean isweighted) throws IOException {
         this.isbidirectional = isbidirectional;
         this.isweighted = isweighted;
         createGraph();
@@ -34,7 +34,7 @@ public class Graph_notCapacitive {
     public void createGraph() throws IOException {
 
         //Knotenanzahl eingeben
-        System.out.println("Wie viele Knoten soll der Graph_notCapacitive haben?");
+        System.out.println("Wie viele Knoten soll der Graph haben?");
         Scanner scanner = new Scanner(System.in);
         //Zur Knotrolle Anzahl ausgeben
         this.nodecount = scanner.nextInt();
@@ -53,8 +53,8 @@ public class Graph_notCapacitive {
                 e.printStackTrace();
             }
         }
-        //Wie viele Kanten soll der Graph_notCapacitive besitzen?
-        System.out.print("Wie viele Kanten soll der Graph_notCapacitive besitzten (genaue Anzahl)?_ ");
+        //Wie viele Kanten soll der Graph besitzen?
+        System.out.print("Wie viele Kanten soll der Graph besitzten (genaue Anzahl)?_ ");
         Scanner scanner1 = new Scanner(System.in);
         Integer edgecount = scanner1.nextInt();
         if (this.isweighted){
@@ -154,9 +154,9 @@ public class Graph_notCapacitive {
 
     public boolean hasEdge(Vertex source, Vertex dest) {
         /*if(graph.get(source).contains(dest)) {
-            System.out.println("Graph_notCapacitive hat eine Kante zwischen " + source.getLabel() + " und " + dest.getLabel());
+            System.out.println("Graph hat eine Kante zwischen " + source.getLabel() + " und " + dest.getLabel());
         }else {
-            System.out.println("Graph_notCapacitive hat keine Kante zwischen " + source.getLabel() + " und " + dest.getLabel());
+            System.out.println("Graph hat keine Kante zwischen " + source.getLabel() + " und " + dest.getLabel());
         }*/
         //durch Liste aller Knoten interieren
         for (Vertex v : graph.keySet()){
@@ -170,9 +170,9 @@ public class Graph_notCapacitive {
 
     public void hasVertex(Vertex v){
         if(graph.containsKey(v)) {
-            System.out.println("Graph_notCapacitive beinhaltet " + v.getLabel() + " als ein Knoten");
+            System.out.println("Graph beinhaltet " + v.getLabel() + " als ein Knoten");
         }else {
-            System.out.println("Graph_notCapacitive beinhaltet nicht " + v.getLabel() + " als ein Knoten");
+            System.out.println("Graph beinhaltet nicht " + v.getLabel() + " als ein Knoten");
         }
     }
 
