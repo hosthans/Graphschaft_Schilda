@@ -253,7 +253,7 @@ public class MaxFlow {
                 }
             }
         }
-        System.out.println(" damit schnellstmöglich ohne Chaos maximal viele Fahrzeuge am Parkplatz ankommen!");
+        System.out.println(ANSI_WHITE_BACKGROUND+" damit schnellstmöglich ohne Chaos maximal viele Fahrzeuge am Parkplatz ankommen!");
     }
 
 
