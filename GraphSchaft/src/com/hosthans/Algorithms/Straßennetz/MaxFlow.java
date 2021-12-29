@@ -11,6 +11,7 @@ public class MaxFlow {
 
     final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+    final String ANSI_RED_BACKGROUND = "\u001B[41m";
 
 
 
@@ -246,7 +247,7 @@ public class MaxFlow {
                     if (n.getE().getWeight() > 0){
                         System.out.println( ANSI_WHITE_BACKGROUND + ANSI_BLACK + "Von " + n.getDest().getLabel() + " nach " + v.getLabel() + " dürfen genau " + n.getE().weight + " Autos fahren,");
                     } else {
-                        System.out.println( ANSI_WHITE_BACKGROUND + ANSI_BLACK + "Von " + n.getDest().getLabel() + " nach " + v.getLabel() + " dürfen keine Autos fahren,");
+                        System.out.println( ANSI_RED_BACKGROUND + ANSI_BLACK + "Von " + n.getDest().getLabel() + " nach " + v.getLabel() + " dürfen keine Autos fahren,");
 
                     }
                 }
