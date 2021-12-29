@@ -12,28 +12,36 @@ public class test {
         /*Graph graph = new Graph(false, true);
         System.out.println(graph.printGraph());*/
         Graph_NOINPUT graph = new Graph_NOINPUT(false, true);
-        Vertex a = new Vertex("a");
-        Vertex b = new Vertex("b");
-        Vertex c = new Vertex("c");
-        Vertex d = new Vertex("d");
-        Vertex e = new Vertex("e");
-        Vertex f = new Vertex("f");
-        Vertex g = new Vertex("g");
+        Vertex Wasserwerk = new Vertex("Wasserwerk");
+        Vertex Thoma = new Vertex("Thoma");
+        Vertex Dogan = new Vertex("Dogan");
+        Vertex Ilona = new Vertex("Ilona");
+        Vertex Club = new Vertex("Club");
+        Vertex Holler = new Vertex("Holler");
+        Vertex Bogart = new Vertex("Bogart");
+        Vertex Adler = new Vertex("Adler");
+        Vertex Supermarkt = new Vertex("Supermarkt");
 
-        graph.addEdge(a, b, false, 7);
-        graph.addEdge(a,c,false, 1);
-        graph.addEdge(b,d,false,6);
-        graph.addEdge(b,f,false,8);
-        graph.addEdge(d,f,false,3);
-        graph.addEdge(c,e,false,6);
-        graph.addEdge(d,g,false,2);
-        graph.addEdge(d,e,false,9);
-        graph.addEdge(e,g,false,7);
-        graph.addEdge(f,g,false,1);
+        graph.addEdge(Wasserwerk, Thoma, false, 15);
+        graph.addEdge(Wasserwerk,Ilona,false, 6);
+        graph.addEdge(Wasserwerk,Club,false,12);
+        graph.addEdge(Dogan,Adler,false,5);
+        graph.addEdge(Dogan,Bogart,false,6);
+        graph.addEdge(Ilona,Bogart,false,3);
+        graph.addEdge(Ilona,Holler,false,1);
+        graph.addEdge(Club,Adler,false,5);
+        graph.addEdge(Club,Holler,false,5);
+        graph.addEdge(Adler,Supermarkt,false,10);
+        graph.addEdge(Bogart,Supermarkt,false,10);
+        graph.addEdge(Holler,Supermarkt,false,7);
+        graph.addEdge(Thoma,Dogan,false,8);
 
 
 
-        MaxFlow mf = new MaxFlow(a, g, graph, 8);
+
+
+        MaxFlow mf = new MaxFlow("Wasserwerk", "Supermarkt", graph, 23);
+        System.out.println();
     }
 
 }

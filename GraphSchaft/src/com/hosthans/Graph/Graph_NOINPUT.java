@@ -26,17 +26,32 @@ public class Graph_NOINPUT {
     public Graph_NOINPUT(Boolean isbidirectional, Boolean isweighted) throws IOException {
         this.isbidirectional = isbidirectional;
         this.isweighted = isweighted;
+
     }
 
+    public Map<Vertex, List<Node>> getStartingList(){
+        return graph;
+    }
 
+    public Map<String, Vertex> getKnoten(){
+        return this.Knoten;
+    }
 
+    public void getVeriecesFromKnoten(){
 
+    }
 
-
-
+    public Vertex getVertex(String label){
+        Vertex answer = null;
+        if (this.Knoten.containsKey(label)){
+            answer = this.Knoten.get(label);
+        }
+        return answer;
+    }
 
     private void addVertex(Vertex vertex) {
         graph.put(vertex, new LinkedList<Node>());
+        Knoten.put(vertex.getLabel(), vertex);
     }
 
     public void addEdge(Vertex source, Vertex destination, boolean biDirectional, Integer weight) throws IOException {
@@ -74,6 +89,7 @@ public class Graph_NOINPUT {
     public void addReverseEdge(Vertex v, Vertex dest){
         Edge e = new Edge(v, dest, 0, null);
         Node n = new Node(e, dest);
+        n.setFlussedited(true);
 
         graph.get(v).add(n);
     }

@@ -1,4 +1,4 @@
-package com.hosthans.Algorithms.Wasserleitung;
+package com.hosthans.Algorithms.Straßennetz;
 
 import com.hosthans.Graph.*;
 
@@ -9,9 +9,8 @@ import java.util.List;
 
 public class MaxFlow {
 
-    final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
     final String ANSI_BLACK = "\u001B[30m";
-    final String ANSI_RED_BACKGROUND = "\u001B[41m";
+    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
 
 
@@ -39,7 +38,7 @@ public class MaxFlow {
         this.graph = graph;
         this.Quelle = Quelle;
         this.Senke = Senke;
-        this.residual = graph;
+        this.residual = this.graph;
         this.needed = needed;
         initialize();
         ford();
@@ -48,13 +47,14 @@ public class MaxFlow {
 
     //erst initialisieren (hier mit residualgraph)
     public void initialize() throws IOException {
-        for (Vertex v : graph.graph.keySet()){
-            for (Node n : graph.graph.get(v)){
+        for (Vertex v : residual.graph.keySet()){
+            for (Node n : residual.graph.get(v)){
                 if (n.getE().weight != 0){
                     this.residual.addReverseEdge(n.getE().dest, v);
                 }
             }
         }
+
 
         System.out.println(residual.printGraph());
 
@@ -64,11 +64,11 @@ public class MaxFlow {
     public LinkedList<Vertex> PfadErstellenBreitensuche(Vertex Quelle, Vertex Senke){
         HashSet<Vertex> visited = new HashSet<>();
         LinkedList<Vertex> queue = new LinkedList<>();
-        LinkedList<NodeWParent> traversed = new LinkedList<>();
+        LinkedList<com.hosthans.Algorithms.Straßennetz.NodeWParent> traversed = new LinkedList<>();
 
         visited.add(Quelle);
         queue.addLast(Quelle);
-        traversed.add(new NodeWParent(Quelle));
+        traversed.add(new com.hosthans.Algorithms.Straßennetz.NodeWParent(Quelle));
 
         while (!queue.isEmpty()){
             Vertex current = queue.poll();
@@ -76,14 +76,14 @@ public class MaxFlow {
             for (Node n : residual.getNeighbors(current)){
                 if ((!visited.contains(n.dest)) && (n.getE().getWeight() > 0)){
                     if (n.getDest().equals(Senke)){
-                        traversed.add(new NodeWParent(n.getDest()));
+                        traversed.add(new com.hosthans.Algorithms.Straßennetz.NodeWParent(n.getDest()));
                         traversed.getLast().setParent(current);
                         queue.clear();
                         break;
                     }
                     queue.addLast(n.getDest());
                     visited.add(n.getDest());
-                    traversed.add(new NodeWParent(n.getDest()));
+                    traversed.add(new com.hosthans.Algorithms.Straßennetz.NodeWParent(n.getDest()));
                     traversed.getLast().setParent(current);
                 }
             }
@@ -92,10 +92,10 @@ public class MaxFlow {
         return pfaduebergabe(traversed, Quelle, Senke);
     }
 
-    public LinkedList<Vertex> pfaduebergabe(LinkedList<NodeWParent> currentList, Vertex Quelle, Vertex Senke){
-        LinkedList<NodeWParent> list = new LinkedList<>();
-        NodeWParent helper = null;
-        for (NodeWParent node : currentList){
+    public LinkedList<Vertex> pfaduebergabe(LinkedList<com.hosthans.Algorithms.Straßennetz.NodeWParent> currentList, Vertex Quelle, Vertex Senke){
+        LinkedList<com.hosthans.Algorithms.Straßennetz.NodeWParent> list = new LinkedList<>();
+       com.hosthans.Algorithms.Straßennetz.NodeWParent helper = null;
+        for (com.hosthans.Algorithms.Straßennetz.NodeWParent node : currentList){
             if (node.getVertex().equals(Senke)){
                 list.add(node);
             } else if (node.getVertex().equals(Quelle)){
@@ -104,7 +104,7 @@ public class MaxFlow {
         }
 
         while (!list.getLast().getParent().equals(Quelle)){
-            for (NodeWParent node : currentList){
+            for (com.hosthans.Algorithms.Straßennetz.NodeWParent node : currentList){
                 if (node.getParent() != null){
                     if (list.getLast().getParent().equals(node.getVertex())){
                         list.add(node);
@@ -125,11 +125,11 @@ public class MaxFlow {
     public boolean PfadExistent(Vertex Quelle, Vertex Senke){
         HashSet<Vertex> visited = new HashSet<>();
         LinkedList<Vertex> queue = new LinkedList<>();
-        LinkedList<NodeWParent> traversed = new LinkedList<>();
+        LinkedList<com.hosthans.Algorithms.Straßennetz.NodeWParent> traversed = new LinkedList<>();
 
         visited.add(Quelle);
         queue.addLast(Quelle);
-        traversed.add(new NodeWParent(Quelle));
+        traversed.add(new com.hosthans.Algorithms.Straßennetz.NodeWParent(Quelle));
 
         while (!queue.isEmpty()){
             Vertex current = queue.poll();
@@ -138,14 +138,14 @@ public class MaxFlow {
                 if ((!visited.contains(n.dest)) && (n.getE().getWeight() > 0)){
                     //wenn Knoten gleich Endknoten
                     if (n.dest.equals(Senke)){
-                        traversed.add(new NodeWParent(n.dest));
+                        traversed.add(new com.hosthans.Algorithms.Straßennetz.NodeWParent(n.dest));
                         traversed.getLast().setParent(current);
                         return true;
                     }
                     //Knoten == gesehen --> wird hinzugefügt um diesen in der Liste vorzufinden
                     queue.addLast(n.getDest());
                     visited.add(n.getDest());
-                    traversed.add(new NodeWParent(n.getDest()));
+                    traversed.add(new com.hosthans.Algorithms.Straßennetz.NodeWParent(n.getDest()));
                     traversed.getLast().setParent(current);
                 }
             }
@@ -238,11 +238,30 @@ public class MaxFlow {
 
     public void getErgebnis(int i){
 
-        if (!GenugPlatz(i)){
-            System.out.print(ANSI_RED_BACKGROUND + ANSI_BLACK + "Das Netz kann maximal " + this.maxFlow + " m^3 Wasser fördern (pro Stunde) ---- somit reicht es NICHT aus für " + i + "." );
-        } else {
-            System.out.print(ANSI_GREEN_BACKGROUND + ANSI_BLACK + "Das Netz kann maximal " + this.maxFlow + " m^3 Wasser fördern (pro Stunde) ---- somit reicht es aus für " + i + ".");
+        System.out.println(" Folgende Straßen sollen wie folgt befahren werden: ");
+
+        for (Vertex v : getFinalGraph().graph.keySet()){
+            if (getFinalGraph().graph.get(v).size() > 0){
+                for (Node n : getFinalGraph().graph.get(v)){
+                    if (n.getE().getWeight() > 0){
+                        System.out.println( ANSI_WHITE_BACKGROUND + ANSI_BLACK + "Von " + n.getDest().getLabel() + " nach " + v.getLabel() + " dürfen genau " + n.getE().weight + " Autos fahren,");
+                    } else {
+                        System.out.println( ANSI_WHITE_BACKGROUND + ANSI_BLACK + "Von " + n.getDest().getLabel() + " nach " + v.getLabel() + " dürfen keine Autos fahren,");
+
+                    }
+                }
+            }
         }
+        System.out.println(" damit schnellstmöglich ohne Chaos maximal viele Fahrzeuge am Parkplatz ankommen!");
+    }
+
+
+    public Graph_NOINPUT getFinalGraph(){
+        for (Vertex v : this.residual.graph.keySet()){
+            //Alle Kanten, die keine Reversekanten sind - auslöschen
+            this.residual.graph.get(v).removeIf(n -> !n.getFlussedited());
+        }
+        return this.residual;
     }
 
 }

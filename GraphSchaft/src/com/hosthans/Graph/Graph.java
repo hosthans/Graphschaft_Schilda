@@ -253,4 +253,11 @@ public class Graph {
         return true;
     }
 
+    public Vertex getVertex(String label){
+        if (this.Knoten.containsKey(label)){
+            return this.Knoten.get(label);
+        }
+        return null;
+    }
+
 }
