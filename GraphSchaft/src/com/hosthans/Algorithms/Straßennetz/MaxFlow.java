@@ -123,6 +123,8 @@ public class MaxFlow {
         return listRueckgabe;
     }
 
+
+    //Breitensuche
     public boolean PfadExistent(Vertex Quelle, Vertex Senke){
         HashSet<Vertex> visited = new HashSet<>();
         LinkedList<Vertex> queue = new LinkedList<>();

@@ -1,0 +1,206 @@
+package com.hosthans.Graph;
+
+import java.io.IOException;
+import java.util.*;
+
+public class Graph_bipartit {
+    public Map<Vertex, List<Node>> graph = new HashMap<>();
+    public Map<String, Vertex> Knoten = new HashMap<>();
+
+    public List<Vertex> gourpa = new ArrayList<>();
+    public List<Vertex> gourpb = new ArrayList<>();
+
+    Vertex ungerade;
+
+
+    public boolean isbidirectional;
+    public boolean isweighted;
+
+
+
+    public Graph_bipartit() throws IOException {
+        this.isbidirectional = false;
+        this.isweighted = false;
+
+    }
+
+    public Map<Vertex, List<Node>> getStartingList(){
+        return graph;
+    }
+
+    public Map<String, Vertex> getKnoten(){
+        return this.Knoten;
+    }
+
+    public void getVeriecesFromKnoten(){
+
+    }
+
+    public Vertex getVertex(String label){
+        Vertex answer = null;
+        if (this.Knoten.containsKey(label)){
+            answer = this.Knoten.get(label);
+        }
+        return answer;
+    }
+
+    private void addVertex(Vertex vertex) {
+        graph.put(vertex, new LinkedList<Node>());
+        Knoten.put(vertex.getLabel(), vertex);
+        if (vertex.isMembOfA){
+            gourpa.add(vertex);
+        } else {
+            gourpb.add(vertex);
+        }
+    }
+
+    public void addEdge(Vertex source, Vertex destination, boolean biDirectional, Integer weight) throws IOException {
+        //gewichtet
+        //nur gebraucht wenn gerichtet
+        Edge e = new Edge(source, destination, weight, null);
+        //wenn ungerichtet
+        Edge e2 = new Edge(destination, source, weight, null);
+
+        Node n1 = new Node(e, destination);
+        Node n2 = new Node(e2, source);
+        if (!graph.containsKey(source)) {
+            addVertex(source);
+            System.out.println("Source from Edge:" + source);
+        }
+
+        if (!graph.containsKey(destination)) {
+            addVertex(destination);
+            System.out.println("Destination from Edge:" + destination);
+        }
+
+
+
+        if (!graph.get(source).contains(n1)){
+            graph.get(source).add(n1);
+        }
+
+
+        if(biDirectional) {
+            graph.get(destination).add(n2);
+        }
+
+    }
+
+    public void addReverseEdge(Vertex v, Vertex dest){
+        Edge e = new Edge(v, dest, 0, null);
+        Node n = new Node(e, dest);
+        n.setFlussedited(true);
+
+        graph.get(v).add(n);
+    }
+
+
+    public boolean hasEdge(Vertex source, Vertex dest) {
+        /*if(graph.get(source).contains(dest)) {
+            System.out.println("Graph hat eine Kante zwischen " + source.getLabel() + " und " + dest.getLabel());
+        }else {
+            System.out.println("Graph hat keine Kante zwischen " + source.getLabel() + " und " + dest.getLabel());
+        }*/
+        //durch Liste aller Knoten interieren
+        for (Vertex v : graph.keySet()){
+            for (Node n : graph.get(v)){
+                if (source == n.e.src && dest == n.e.dest){
+                    return true;
+                }
+            }
+        } return false;
+    }
+
+    public void hasVertex(Vertex v){
+        if(graph.containsKey(v)) {
+            System.out.println("Graph beinhaltet " + v.getLabel() + " als ein Knoten");
+        }else {
+            System.out.println("Graph beinhaltet nicht " + v.getLabel() + " als ein Knoten");
+        }
+    }
+
+    public String printGraph() {
+        //Ausgabe gewichtete Graphen
+
+        StringBuilder builder = new StringBuilder();
+
+        for(Vertex vertex : graph.keySet()) {
+            builder.append(vertex.getLabel().toString() + " hat Kanten nach: ");
+            for(Node edge: graph.get(vertex)) {
+                builder.append(edge.toString() + " ");
+            }
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
+
+
+
+
+
+
+    public Map<Vertex, List<Node>> getGraphMap(){
+        return this.graph;
+    }
+
+    public List<Node> getNeighbors(Vertex v){
+        return graph.get(v);
+    }
+
+    public List<Edge> getEdgeSet(){
+        List<Edge> list = new ArrayList<>();
+        for (Vertex v : graph.keySet()){
+            for (Node n : graph.get(v)){
+                list.add(n.getE());
+            }
+        }
+        return list;
+    }
+
+
+    public void removeEdge(Vertex from, Vertex to, Node n){
+        graph.get(from).remove(n);
+        graph.get(to).remove(getReverseEdge(from, to));
+
+    }
+
+    public Node getReverseEdge(Vertex from, Vertex to){
+        for (Node n : graph.get(to)){
+            if (n.dest == from){
+                return n;
+            }
+        }
+        return null;
+    }
+
+    public Vertex getungeraden(){
+
+        for (Vertex v : graph.keySet()){
+            if (graph.get(v).size()%2 != 0){
+                ungerade = v;
+            }
+        }
+        return ungerade;
+    }
+
+
+    public boolean hasEdges(){
+
+        int count = 0;
+        for (Vertex v : graph.keySet()){
+            count = count + graph.get(v).size();
+        }
+        if (count!=0){
+            return true;
+        }
+        return true;
+    }
+
+    public List<Vertex> getMemberofA(){
+        return this.gourpa;
+    }
+
+    public List<Vertex> getMemberofB(){
+        return this.gourpb;
+    }
+}

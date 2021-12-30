@@ -5,8 +5,18 @@ public class Vertex {
     String label;
     Integer key = Integer.MAX_VALUE;
 
+    boolean isMembOfA = false;
+
     Vertex predecessor;
     boolean isVisited;
+
+    public void setMembOfA(){
+        this.isMembOfA = true;
+    }
+
+    public boolean getisMemberOfA(){
+        return this.isMembOfA;
+    }
 
     public void setVisited(boolean visited) {
         this.isVisited = visited;
