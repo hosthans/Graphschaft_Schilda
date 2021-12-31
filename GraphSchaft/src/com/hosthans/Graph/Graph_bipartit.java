@@ -7,8 +7,10 @@ public class Graph_bipartit {
     public Map<Vertex, List<Node>> graph = new HashMap<>();
     public Map<String, Vertex> Knoten = new HashMap<>();
 
-    public List<Vertex> gourpa = new ArrayList<>();
-    public List<Vertex> gourpb = new ArrayList<>();
+    public List<Vertex> leftVertieces = new ArrayList<>();
+    public List<Vertex> rightVertieces = new ArrayList<>();
+
+    char group;
 
     Vertex ungerade;
 
@@ -32,8 +34,18 @@ public class Graph_bipartit {
         return this.Knoten;
     }
 
-    public void getVeriecesFromKnoten(){
+    public List<Vertex> getVertiecesof(Vertex v){
+        List<Vertex> adj = new ArrayList<>();
 
+        for (Node n : graph.get(v)){
+            adj.add(n.dest);
+        }
+
+        return adj;
+    }
+
+    public boolean isMemberofLeft(Vertex vertex){
+        return leftVertieces.contains(vertex);
     }
 
     public Vertex getVertex(String label){
@@ -48,9 +60,9 @@ public class Graph_bipartit {
         graph.put(vertex, new LinkedList<Node>());
         Knoten.put(vertex.getLabel(), vertex);
         if (vertex.isMembOfA){
-            gourpa.add(vertex);
+            leftVertieces.add(vertex);
         } else {
-            gourpb.add(vertex);
+            rightVertieces.add(vertex);
         }
     }
 
@@ -94,7 +106,6 @@ public class Graph_bipartit {
         graph.get(v).add(n);
     }
 
-
     public boolean hasEdge(Vertex source, Vertex dest) {
         /*if(graph.get(source).contains(dest)) {
             System.out.println("Graph hat eine Kante zwischen " + source.getLabel() + " und " + dest.getLabel());
@@ -134,11 +145,6 @@ public class Graph_bipartit {
         return builder.toString();
     }
 
-
-
-
-
-
     public Map<Vertex, List<Node>> getGraphMap(){
         return this.graph;
     }
@@ -156,7 +162,6 @@ public class Graph_bipartit {
         }
         return list;
     }
-
 
     public void removeEdge(Vertex from, Vertex to, Node n){
         graph.get(from).remove(n);
@@ -196,11 +201,19 @@ public class Graph_bipartit {
         return true;
     }
 
-    public List<Vertex> getMemberofA(){
-        return this.gourpa;
+    public List<Vertex> getMemberleft(){
+        return this.leftVertieces;
     }
 
-    public List<Vertex> getMemberofB(){
-        return this.gourpb;
+    public List<Vertex> getMemberright(){
+        return this.rightVertieces;
+    }
+
+    public int getNumberofLeft(){
+        return this.leftVertieces.size();
+    }
+
+    public int getNumberofRight(){
+        return this.rightVertieces.size();
     }
 }

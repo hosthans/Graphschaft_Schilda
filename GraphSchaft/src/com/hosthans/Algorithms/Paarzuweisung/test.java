@@ -1,6 +1,5 @@
 package com.hosthans.Algorithms.Paarzuweisung;
 
-import com.hosthans.Graph.Graph;
 import com.hosthans.Graph.Graph_bipartit;
 import com.hosthans.Graph.Vertex;
 
@@ -24,12 +23,18 @@ public class test {
         Vertex kunigunde = new Vertex("Kunigunde");
 
         graph.addEdge(karl, margit, false, 0);
-        graph.addEdge(karl, Heidi, false, 3);
+        graph.addEdge(margit, karl, false, 3);
         graph.addEdge(dieter, beate, false, 1);
-        graph.addEdge(heinz, kunigunde, false, 0);
-        graph.addEdge(georg, beate, false, 2);
+        graph.addEdge(margit, heinz, false, 0);
+        graph.addEdge(beate, georg, false, 2);
 
-        for (Vertex v: graph.getMemberofA()){
+        for (Vertex v: graph.getMemberleft()){
+            System.out.println(v.getLabel());
+        }
+
+
+        System.out.println(graph.getNumberofRight());
+        for (Vertex v : graph.getVertiecesof(karl)){
             System.out.println(v.getLabel());
         }
 
