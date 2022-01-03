@@ -61,7 +61,7 @@ public class Graph_bipartit {
                 Vertex src = Knoten.get("Source");
                 addEdge(src, v, false, 1);
             }
-            else if (!v.isMembOfA && (!Objects.equals(v.getLabel(), "Source"))){
+            else if (!v.isMembOfA && (!Objects.equals(v.getLabel(), "Source") && (!Objects.equals(v.getLabel(), "Destination")))){
                 Vertex dest = Knoten.get("Destination");
                 addEdge(v, dest, false, 1);
             }

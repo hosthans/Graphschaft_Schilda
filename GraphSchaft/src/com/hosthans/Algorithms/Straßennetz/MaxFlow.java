@@ -89,7 +89,6 @@ public class MaxFlow {
                 }
             }
         }
-
         return pfaduebergabe(traversed, Quelle, Senke);
     }
 

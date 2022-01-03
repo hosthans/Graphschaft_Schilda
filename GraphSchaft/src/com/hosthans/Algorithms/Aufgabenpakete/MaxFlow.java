@@ -40,7 +40,7 @@ public class MaxFlow {
         this.graph = graph;
         this.Quelle = Quelle;
         this.Senke = Senke;
-        this.residual = this.graph;
+        this.residual = graph;
         this.needed = needed;
         initialize();
         ford();
@@ -51,16 +51,21 @@ public class MaxFlow {
     public void initialize() throws IOException {
 
 
-        for (Vertex v : residual.graph.keySet()){
-            for (Node n : residual.graph.get(v)){
+        for (Vertex v : this.residual.graph.keySet()){
+            for (Node n : this.residual.graph.get(v)){
                 if (n.getE().weight != 0){
                     this.residual.addReverseEdge(n.getE().dest, v);
                 }
             }
         }
-
-
         System.out.println(residual.printGraph());
+    }
+
+    public void initialize2() throws IOException {
+        for (Vertex v : graph.graph.keySet()){
+            this.residual.addVertex(v);
+        }
+
 
     }
 

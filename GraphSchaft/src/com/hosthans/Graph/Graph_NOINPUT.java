@@ -49,7 +49,7 @@ public class Graph_NOINPUT {
         return answer;
     }
 
-    private void addVertex(Vertex vertex) {
+    public void addVertex(Vertex vertex) {
         graph.put(vertex, new LinkedList<Node>());
         Knoten.put(vertex.getLabel(), vertex);
     }

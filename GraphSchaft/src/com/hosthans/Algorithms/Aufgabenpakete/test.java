@@ -16,36 +16,53 @@ public class test {
         Vertex Worker2 = new Vertex("Müller");
         Vertex Worker3 = new Vertex("Augst");
         Vertex Worker4 = new Vertex("Hof");
-        Vertex Worker5 = new Vertex("Hansi");
+        Vertex Worker5 = new Vertex("Schmidt");
+        Vertex Worker6 = new Vertex("Kunze");
+        Vertex Worker7 = new Vertex("Lustig");
 
         Worker1.setMembOfA();
         Worker2.setMembOfA();
         Worker3.setMembOfA();
         Worker4.setMembOfA();
         Worker5.setMembOfA();
+        Worker6.setMembOfA();
+        Worker7.setMembOfA();
 
         Vertex Task1 = new Vertex("Straßenbau");
         Vertex Task2 = new Vertex("Modeberatung");
         Vertex Task3 = new Vertex("Verkehrsplanung");
         Vertex Task4 = new Vertex("Wasserversorgung");
-        Vertex Task5 = new Vertex("Gülle");
+        Vertex Task5 = new Vertex("Archaeologie");
+        Vertex Task6 = new Vertex("Wettkampfausrichtung");
+        Vertex Task7 = new Vertex("Hochzeitsplanung");
 
 
 
-        graph.addEdge(Worker1, Task3, false, 1);
         graph.addEdge(Worker1, Task1, false, 1);
+        graph.addEdge(Worker1, Task3, false, 1);
+        graph.addEdge(Worker1, Task5, false, 1);
 
         graph.addEdge(Worker2, Task2, false, 1);
+        graph.addEdge(Worker2, Task7, false, 1);
 
         graph.addEdge(Worker3, Task1, false, 1);
         graph.addEdge(Worker3, Task4, false, 1);
 
         graph.addEdge(Worker4, Task1, false, 1);
         graph.addEdge(Worker4, Task2, false, 1);
-        graph.addEdge(Worker4, Task5, false, 1);
+
+
 
         //graph.addEdge(Worker5, Task1, false, 1);
-        graph.addEdge(Worker5, Task5, false, 1);
+        graph.addEdge(Worker5, Task6, false, 1);
+        graph.addEdge(Worker5, Task1, false, 1);
+        graph.addEdge(Worker5, Task3, false, 1);
+
+        graph.addEdge(Worker6, Task5, false, 1);
+        graph.addEdge(Worker6, Task7, false, 1);
+
+        graph.addEdge(Worker7, Task3, false, 1);
+        graph.addEdge(Worker7, Task6, false, 1);
 
 
         Vertex src = new Vertex("Source");
