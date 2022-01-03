@@ -7,12 +7,16 @@ public class Graph_bipartit {
     public Map<Vertex, List<Node>> graph = new HashMap<>();
     public Map<String, Vertex> Knoten = new HashMap<>();
 
-    public List<Vertex> leftVertieces = new ArrayList<>();
-    public List<Vertex> rightVertieces = new ArrayList<>();
+    public List<Vertex> leftVertieces = new LinkedList<>();
+    public List<Vertex> rightVertieces = new LinkedList<>();
 
-    char group;
 
     Vertex ungerade;
+
+
+
+
+
 
 
     public boolean isbidirectional;
@@ -56,14 +60,10 @@ public class Graph_bipartit {
         return answer;
     }
 
-    private void addVertex(Vertex vertex) {
+    private void addVertex(Vertex vertex) throws IOException {
         graph.put(vertex, new LinkedList<Node>());
         Knoten.put(vertex.getLabel(), vertex);
-        if (vertex.isMembOfA){
-            leftVertieces.add(vertex);
-        } else {
-            rightVertieces.add(vertex);
-        }
+
     }
 
     public void addEdge(Vertex source, Vertex destination, boolean biDirectional, Integer weight) throws IOException {
@@ -216,4 +216,6 @@ public class Graph_bipartit {
     public int getNumberofRight(){
         return this.rightVertieces.size();
     }
+
+
 }

@@ -5,7 +5,7 @@ public class Vertex {
     String label;
     Integer key = Integer.MAX_VALUE;
 
-    boolean isMembOfA = false;
+    Boolean isMembOfA = false;
 
     Vertex predecessor;
     boolean isVisited;
@@ -14,7 +14,11 @@ public class Vertex {
         this.isMembOfA = true;
     }
 
-    public boolean getisMemberOfA(){
+    public void setMembOfB(){
+        this.isMembOfA = false;
+    }
+
+    public boolean getMember(){
         return this.isMembOfA;
     }
 
