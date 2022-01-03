@@ -40,7 +40,7 @@ public class test {
 
 
 
-        MaxFlow mf = new MaxFlow("Wasserwerk", "Supermarkt", graph, 23);
+        MaxFlow mf = new MaxFlow("Wasserwerk", "Supermarkt", graph, 21);
         System.out.println();
     }
 
