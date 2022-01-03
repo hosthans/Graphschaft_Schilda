@@ -127,6 +127,7 @@ public class Hierholzer {
     }
 
     public void EulerWegBerechnen(){
+        System.out.println("EulerWeg");
         //erst ersten Zyklus hinzufügen
         this.eulerCircuitVertieces.addAll(this.cyclesVertex.get(0));
         eulercircuitedges.addAll(this.cyclesEdges.get(0));
@@ -231,6 +232,7 @@ public class Hierholzer {
 
     //Eulerkreis berechnen
     public void EulerKreisBerechnen(){
+        System.out.println("Euler-Tour");
         //erst ersten Zyklus hinzufügen
         this.eulerCircuitVertieces.addAll(this.cyclesVertex.get(0));
         eulercircuitedges.addAll(this.cyclesEdges.get(0));
@@ -248,7 +250,7 @@ public class Hierholzer {
 
     public void promptResult(){
 
-        System.out.println("Edge-Eulerkreis: \t");
+        System.out.println("Finaler Weg: \t");
         for (int i = 0; i<eulercircuitedges.size(); i++){
             System.out.println(eulercircuitedges.get(i).src.getLabel() + " ---> " + eulercircuitedges.get(i).dest.getLabel());
         }

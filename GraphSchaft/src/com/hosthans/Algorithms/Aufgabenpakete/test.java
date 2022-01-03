@@ -22,6 +22,7 @@ public class test {
         Worker2.setMembOfA();
         Worker3.setMembOfA();
         Worker4.setMembOfA();
+        Worker5.setMembOfA();
 
         Vertex Task1 = new Vertex("Straßenbau");
         Vertex Task2 = new Vertex("Modeberatung");
@@ -48,20 +49,26 @@ public class test {
 
 
         Vertex src = new Vertex("Source");
+        graph.addVertex(src);
         Vertex dest = new Vertex("Destination");
+        graph.addVertex(dest);
 
-        graph.addEdge(src, Worker5, false, 1);
+  /*      graph.addEdge(src, Worker5, false, 1);
         graph.addEdge(src, Worker1, false, 1);
         graph.addEdge(src, Worker2, false, 1);
         graph.addEdge(src, Worker3, false, 1);
         graph.addEdge(src, Worker4, false, 1);
+*/
 
-
-        graph.addEdge(Task1, dest, false, 1);
+        /*graph.addEdge(Task1, dest, false, 1);
         graph.addEdge(Task2, dest, false, 1);
         graph.addEdge(Task3, dest, false, 1);
         graph.addEdge(Task4, dest, false, 1);
         graph.addEdge(Task5, dest, false, 1);
+
+         */
+
+        graph.addDest();
 
         System.out.println(graph.printGraph());
 

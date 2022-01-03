@@ -14,11 +14,6 @@ public class Graph_bipartit {
     Vertex ungerade;
 
 
-
-
-
-
-
     public boolean isbidirectional;
     public boolean isweighted;
 
@@ -60,9 +55,29 @@ public class Graph_bipartit {
         return answer;
     }
 
-    private void addVertex(Vertex vertex) throws IOException {
+    public void addDest() throws IOException {
+        for (Vertex v : graph.keySet()){
+            if (v.isMembOfA && !Objects.equals(v.getLabel(), "Destination")){
+                Vertex src = Knoten.get("Source");
+                addEdge(src, v, false, 1);
+            }
+            else if (!v.isMembOfA && (!Objects.equals(v.getLabel(), "Source"))){
+                Vertex dest = Knoten.get("Destination");
+                addEdge(v, dest, false, 1);
+            }
+            else {
+                System.out.println("Fail");
+            }
+        }
+
+
+    }
+
+    public void addVertex(Vertex vertex) throws IOException {
         graph.put(vertex, new LinkedList<Node>());
         Knoten.put(vertex.getLabel(), vertex);
+
+
 
     }
 
