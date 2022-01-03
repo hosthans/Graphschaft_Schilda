@@ -244,21 +244,18 @@ public class MaxFlow {
 
     public void getErgebnis(int i){
 
-        System.out.println(" Folgende Straßen sollen wie folgt befahren werden: ");
+        System.out.println(" Folgende Aufgaben wurden zugeteilt: ");
 
         for (Vertex v : getFinalGraph().graph.keySet()){
-            if (getFinalGraph().graph.get(v).size() > 0){
+            if (v.getMember() == false){
                 for (Node n : getFinalGraph().graph.get(v)){
-                    if (n.getE().getWeight() > 0){
-                        System.out.println( ANSI_WHITE_BACKGROUND + ANSI_BLACK + "Von " + n.getDest().getLabel() + " nach " + v.getLabel() + " dürfen genau " + n.getE().weight + " Autos fahren,");
-                    } else {
-                        System.out.println( ANSI_RED_BACKGROUND + ANSI_BLACK + "Von " + n.getDest().getLabel() + " nach " + v.getLabel() + " dürfen keine Autos fahren,");
-
+                    if (n.getE().getWeight() > 0 && n.getDest().getLabel()!="Source" && n.getE().src.getLabel() != "Destination"){
+                        System.out.println( ANSI_WHITE_BACKGROUND + ANSI_BLACK + "Arbeiter " + n.getDest().getLabel() + " bearbeitet folgende Aufgabe: " + v.getLabel());
                     }
                 }
             }
         }
-        System.out.println(ANSI_WHITE_BACKGROUND+" damit schnellstmöglich ohne Chaos maximal viele Fahrzeuge am Parkplatz ankommen!");
+        System.out.println(ANSI_WHITE_BACKGROUND+"Somit hat jeder Arbeiter eine geile Rolle die ihm gefällt");
     }
 
 
