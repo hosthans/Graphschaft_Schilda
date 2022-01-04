@@ -118,6 +118,7 @@ public class Hierholzer {
                         if (graph.graph.get(v).size() > 0){
                             currentcycleStartAEnd = v;
                             currentVertex = currentcycleStartAEnd;
+                            System.out.println("Nächster Knoten: " + currentVertex.getLabel());
                             break;
                         }
                     }
@@ -129,8 +130,17 @@ public class Hierholzer {
     public void EulerWegBerechnen(){
         System.out.println("EulerWeg");
         //erst ersten Zyklus hinzufügen
+
         this.eulerCircuitVertieces.addAll(this.cyclesVertex.get(0));
         eulercircuitedges.addAll(this.cyclesEdges.get(0));
+
+        for (List<Vertex> l : this.cyclesVertex){
+            System.out.println(this.cyclesVertex.indexOf(l));
+            System.out.println("----------------------------");
+            for (int i = 0; i<l.size(); i++){
+                System.out.println(l.get(i).getLabel());
+            }
+        }
 
         //alle anderen Zyklen hinzufügen
         for (int i  = 1; i<this.cyclesVertex.size(); i++){
@@ -157,7 +167,8 @@ public class Hierholzer {
         //Zufallsknoten als Startknoten wählen
         Vertex[] list = graph.graph.keySet().toArray(new Vertex[0]);
         int randomIndex = new Random().nextInt(list.length);
-        Vertex start = list[randomIndex];
+        //Vertex start = list[randomIndex];
+        Vertex start = graph.Knoten.get("1");
         //Testausgabe
         System.out.println(start.getLabel());
 
@@ -219,9 +230,10 @@ public class Hierholzer {
             //Durch alle Knoten iterieren, ob man noch Knoten mit Kanten hat, die nicht verwendet wurden
             if (!this.graph.getEdgeSet().isEmpty()){
                 for (Vertex v : graph.graph.keySet()){
-                    if (graph.graph.get(v).size() > 0){
+                    if (graph.graph.get(v).size() > 0 && currentCycleNodes.contains(v)){
                         currentcycleStartAEnd = v;
                         currentVertex = currentcycleStartAEnd;
+                        System.out.println("Nächster Knoten: " + currentVertex.getLabel());
                         break;
                     }
                 }
@@ -234,14 +246,22 @@ public class Hierholzer {
     public void EulerKreisBerechnen(){
         System.out.println("Euler-Tour");
         //erst ersten Zyklus hinzufügen
+
         this.eulerCircuitVertieces.addAll(this.cyclesVertex.get(0));
         eulercircuitedges.addAll(this.cyclesEdges.get(0));
 
+        for (List<Vertex> l : this.cyclesVertex){
+            System.out.println(this.cyclesVertex.indexOf(l));
+            System.out.println("-------------------------------");
+            for (int i = 0; i<l.size(); i++){
+                System.out.println(l.get(i).getLabel());
+            }
+        }
         //alle anderen Zyklen hinzufügen
         for (int i  = 1; i<this.cyclesVertex.size(); i++){
             int index = this.eulerCircuitVertieces.indexOf(this.cyclesVertex.get(i).get(0));
 
-            //this.eulerCircuitVertieces.remove(index);
+            this.eulerCircuitVertieces.remove(index);
             this.eulerCircuitVertieces.addAll(index, this.cyclesVertex.get(i));
 
             this.eulercircuitedges.addAll(index, this.cyclesEdges.get(i));
