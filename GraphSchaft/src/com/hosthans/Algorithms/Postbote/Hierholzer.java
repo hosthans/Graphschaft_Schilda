@@ -115,7 +115,7 @@ public class Hierholzer {
                 //Durch alle Knoten iterieren, ob man noch Knoten mit Kanten hat, die nicht verwendet wurden
                 if (!this.graph.getEdgeSet().isEmpty()){
                     for (Vertex v : graph.graph.keySet()){
-                        if (graph.graph.get(v).size() > 0){
+                        if (graph.graph.get(v).size() > 0 && currentCycleNodes.contains(v)){
                             currentcycleStartAEnd = v;
                             currentVertex = currentcycleStartAEnd;
                             System.out.println("Nächster Knoten: " + currentVertex.getLabel());
@@ -167,8 +167,8 @@ public class Hierholzer {
         //Zufallsknoten als Startknoten wählen
         Vertex[] list = graph.graph.keySet().toArray(new Vertex[0]);
         int randomIndex = new Random().nextInt(list.length);
-        //Vertex start = list[randomIndex];
-        Vertex start = graph.Knoten.get("1");
+        Vertex start = list[randomIndex];
+        //Vertex start = graph.Knoten.get("3");
         //Testausgabe
         System.out.println(start.getLabel());
 
@@ -194,7 +194,12 @@ public class Hierholzer {
                 }*/
 
                 //Zufälliger Kntoen aus Kantenliste
-                int randomNumber = new Random().nextInt(edges.size());
+                int randomNumber;
+                if (edges.size()>0){
+                    randomNumber = new Random().nextInt(edges.size());
+                } else {
+                    break;
+                }
 
                 Node n = edges.get(randomNumber);
                 Vertex from = n.getE().src;
