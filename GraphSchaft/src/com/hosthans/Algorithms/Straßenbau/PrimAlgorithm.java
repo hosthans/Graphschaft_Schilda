@@ -47,6 +47,8 @@ public class PrimAlgorithm {
         }
         //r.key - queue.peek.weight = 0
         priorityQueue.peek().weight=0;
+
+        //Ausgabe des Startknotens
         System.out.println(priorityQueue.peek());
 
         //während die Menge Q (priorityQueue) nicht leer ist
