@@ -19,6 +19,7 @@ public class test {
         Vertex c = new Vertex("c");
         Vertex d = new Vertex("d");
         Vertex e = new Vertex("e");
+        Vertex x = new Vertex("x");
 
         graph.addEdge(a,b,true,0);
         graph.addEdge(a,d,true,0);
@@ -28,6 +29,8 @@ public class test {
         graph.addEdge(d,e,true,0);
         graph.addEdge(b,e,true,0);
         graph.addEdge(b,d,true,0);
+        graph.addEdge(a,x,true,0);
+
 
 
 

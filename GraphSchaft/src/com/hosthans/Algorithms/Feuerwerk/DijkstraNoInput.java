@@ -1,14 +1,15 @@
 package com.hosthans.Algorithms.Feuerwerk;
 
 import com.hosthans.Graph.Graph;
+import com.hosthans.Graph.Graph_NOINPUT;
 import com.hosthans.Graph.Node;
 import com.hosthans.Graph.Vertex;
 
 import java.util.*;
 
-public class Dijkstra {
+public class DijkstraNoInput {
 
-    Graph graph;
+    Graph_NOINPUT graph;
     Vertex v;
     DijkstraNode startingNode;
 
@@ -23,7 +24,7 @@ public class Dijkstra {
 
 
 
-    public Dijkstra(String label, Graph g){
+    public DijkstraNoInput(String label, Graph_NOINPUT g){
         this.graph = g;
         this.v = graph.Knoten.get(label);
         doAlgorithm();
