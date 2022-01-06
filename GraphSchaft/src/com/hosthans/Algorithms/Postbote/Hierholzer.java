@@ -57,19 +57,11 @@ public class Hierholzer {
                 LinkedList<Vertex> currentCycleNodes = new LinkedList<Vertex>();
                 LinkedList<Edge> currentCycleEdges = new LinkedList<Edge>();
                 do {
-
                     //aktuellen Knoten dem Zyklus hinzufügen
                     currentCycleNodes.add(currentVertex);
 
-
                     //Alle Kanten des Aktuellen Knotens ermitteln
                     List<Node> edges = graph.getNeighbors(currentVertex);
-
-
-                    //falls keine Kante mehr vorhanden __> Graph nicht zusammenhängend
-                /*if (edges.isEmpty()){
-                    throw new IllegalArgumentException("graph muss zusammenhängend sein");
-                }*/
 
                     //Zufälliger Kntoen aus Kantenliste
                     int randomNumber;
@@ -97,16 +89,9 @@ public class Hierholzer {
                         currentVertex = nextEdge.getDest();
                     }
 
-
-
-
-                    //Geht solange bis Zyklus wieder am Startknoten ist
-
-
                     //wird benötigt, da Ergebnis sonst falsch (Bricht ab und fängt neuen Zyklus bei Startknoten an)
                 } while (graph.hasEdges());
                 //Brauch letzten JKnoten nicht hinzufügen, da dieser ja dem ersten entspricht
-
 
                 currentCycleNodes.add(currentcycleStartAEnd);
 

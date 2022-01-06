@@ -19,17 +19,19 @@ public class test {
         Vertex c = new Vertex("c");
         Vertex d = new Vertex("d");
         Vertex e = new Vertex("e");
-        Vertex x = new Vertex("x");
+        Vertex f = new Vertex("f");
 
         graph.addEdge(a,b,true,0);
         graph.addEdge(a,d,true,0);
-        graph.addEdge(a,c,true,0);
         graph.addEdge(b,c,true,0);
-        graph.addEdge(c,d,true,0);
-        graph.addEdge(d,e,true,0);
+        graph.addEdge(b,f,true,0);
         graph.addEdge(b,e,true,0);
-        graph.addEdge(b,d,true,0);
-        graph.addEdge(a,x,true,0);
+        graph.addEdge(d,e,true,0);
+        graph.addEdge(d,f,true,0);
+        graph.addEdge(d,c,true,0);
+        graph.addEdge(c,e,true,0);
+        graph.addEdge(c,f,true,0);
+        graph.addEdge(e,f,true,0);
 
 
 
