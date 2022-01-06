@@ -69,6 +69,7 @@ public class DijkstraNoInput {
 
             //niedrigster rausnehmen
             DijkstraNode currentNode = Q.poll();
+            //System.out.println(currentNode.getV().getLabel() + " ----Queue ----");
             helper.remove(currentNode);
 
             List<Node> adjList = graph.graph.get(currentNode.v);
