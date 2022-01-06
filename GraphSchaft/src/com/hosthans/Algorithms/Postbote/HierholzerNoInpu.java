@@ -160,9 +160,16 @@ public class HierholzerNoInpu {
 
     public void searchcyrcles(){
 
+
+        int randomIndex = 0;
         //Zufallsknoten als Startknoten wählen
         Vertex[] list = graph.graph.keySet().toArray(new Vertex[0]);
-        int randomIndex = new Random().nextInt(list.length);
+        if (list.length < 0){
+            System.out.println("Fail");
+        } else {
+            randomIndex = new Random().nextInt(list.length);
+        }
+
         Vertex start = list[randomIndex];
         //Vertex start = graph.Knoten.get("3");
         //Testausgabe
@@ -251,13 +258,13 @@ public class HierholzerNoInpu {
         this.eulerCircuitVertieces.addAll(this.cyclesVertex.get(0));
         eulercircuitedges.addAll(this.cyclesEdges.get(0));
 
-        for (List<Vertex> l : this.cyclesVertex){
+        /*for (List<Vertex> l : this.cyclesVertex){
             System.out.println(this.cyclesVertex.indexOf(l));
             System.out.println("-------------------------------");
             for (int i = 0; i<l.size(); i++){
                 System.out.println(l.get(i).getLabel());
             }
-        }
+        }*/
         //alle anderen Zyklen hinzufügen
         for (int i  = 1; i<this.cyclesVertex.size(); i++){
             int index = this.eulerCircuitVertieces.indexOf(this.cyclesVertex.get(i).get(0));

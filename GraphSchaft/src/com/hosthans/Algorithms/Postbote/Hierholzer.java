@@ -121,6 +121,7 @@ public class Hierholzer {
         this.eulerCircuitVertieces.addAll(this.cyclesVertex.get(0));
         eulercircuitedges.addAll(this.cyclesEdges.get(0));
 
+        //nur zur Überprüfung
         for (List<Vertex> l : this.cyclesVertex){
             System.out.println(this.cyclesVertex.indexOf(l));
             System.out.println("----------------------------");

@@ -25,6 +25,18 @@ public class Graph_bipartit {
 
     }
 
+    public Node getNode(Vertex vertex){
+
+        for (Vertex v:graph.keySet()){
+            for (Node n:graph.get(v)){
+                if (n.dest == vertex){
+                    return n;
+                }
+            }
+        }
+        return null;
+    }
+
     public Map<Vertex, List<Node>> getStartingList(){
         return graph;
     }

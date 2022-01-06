@@ -10,7 +10,6 @@ public class test {
     public static void main(String[] args) throws IOException {
 
         //Graph graph = new Graph(true, false);
-        //Hierholzer hierholzer = new Hierholzer(graph);
 
         Graph_NOINPUT graph = new Graph_NOINPUT(true, false);
 
@@ -33,11 +32,7 @@ public class test {
         graph.addEdge(c,f,true,0);
         graph.addEdge(e,f,true,0);
 
-
-
-
-
-        System.out.println(graph.printGraph());
+        //Hierholzer hierholzer = new Hierholzer(graph);
 
 
         HierholzerNoInpu hierholzerNoInpu = new HierholzerNoInpu(graph);

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class MaxFlow {
 
@@ -43,6 +44,7 @@ public class MaxFlow {
         this.residual = graph;
         this.needed = needed;
         initialize();
+
         ford();
         getErgebnis(this.needed);
     }
@@ -61,13 +63,7 @@ public class MaxFlow {
         System.out.println(residual.printGraph());
     }
 
-    public void initialize2() throws IOException {
-        for (Vertex v : graph.graph.keySet()){
-            this.residual.addVertex(v);
-        }
 
-
-    }
 
     //nachdem PFad existiert --> erstellen
     public LinkedList<Vertex> PfadErstellenBreitensuche(Vertex Quelle, Vertex Senke){
