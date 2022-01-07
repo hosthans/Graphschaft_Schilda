@@ -21,7 +21,6 @@ public class maxFlowBipartite {
     public maxFlowBipartite(Graph_bipartit graph) throws IOException {
         this.graph = graph;
         initialize();
-        getGraph();
         getErgebnis();
     }
 
@@ -32,7 +31,7 @@ public class maxFlowBipartite {
                     Node node1 = this.graph.getNode(v);
                     if (this.graph.graph.get(node.getDest()).contains(node1)){
                         int index = graph.graph.get(v).indexOf(node);
-                        this.graph.graph.get(v).get(index).getE().weight = this.graph.graph.get(v).get(index).getE().getWeight() + 1;
+                        this.graph.graph.get(v).get(index).getE().weight = 2;
                         this.graph.graph.get(node.getDest()).remove(node1);
                     }
                 }
@@ -45,13 +44,9 @@ public class maxFlowBipartite {
     public void initialize2() throws IOException {
         for (Vertex v : this.graph.graph.keySet()){
             if (!v.getMember()){
-                for (Node n : this.graph.graph.get(v)){
-
                     for (int i = 0; i<this.graph.graph.get(v).size(); i++){
                         this.graph.graph.get(v).remove(i);
                     }
-
-                }
             } else if (v.getMember()){
                 for (Node n : this.graph.graph.get(v)){
                     if (n.getE().weight < 2){
@@ -119,7 +114,7 @@ public class maxFlowBipartite {
                 this.graph.addEdge(src, v, false, 2);
             }
         }
-
+        getGraph();
         ford();
 
     }
@@ -317,13 +312,20 @@ public class maxFlowBipartite {
             }
         }
         System.out.println(ANSI_WHITE_BACKGROUND+"Somit hat jeder eine geile Frau die ihm gefällt");
+
+        getGraph();
     }
 
 
     public Graph_bipartit getFinalGraph(){
         for (Vertex v : this.graph.graph.keySet()){
             //Alle Kanten, die keine Reversekanten sind - auslöschen
-            this.graph.graph.get(v).removeIf(n -> !n.getFlussedited());
+            //this.graph.graph.get(v).removeIf(n -> !n.getFlussedited());
+            for (int i = 0; i<this.graph.graph.get(v).size(); i++){
+                if (this.graph.graph.get(v).get(i).getE().weight != 2){
+                    this.graph.graph.get(v).remove(i);
+                }
+            }
         }
         return this.graph;
     }
