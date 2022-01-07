@@ -11,6 +11,7 @@ public class Graph_bipartit {
     public List<Vertex> rightVertieces = new LinkedList<>();
 
 
+
     Vertex ungerade;
 
 
@@ -25,16 +26,30 @@ public class Graph_bipartit {
 
     }
 
-    public Node getNode(Vertex vertex){
+    //hat bestimmter Knoten Kante zu bestimmtem knoten
+    public boolean hasNode(Vertex from, Vertex to){
 
-        for (Vertex v:graph.keySet()){
-            for (Node n:graph.get(v)){
-                if (n.dest == vertex){
-                    return n;
+        for (Node n:graph.get(from)){
+
+                if (n.dest == to){
+                    return true;
                 }
+
+        }
+        return false;
+    }
+
+    public int getindexOfNode(Node n, Vertex v){
+        int counter = 0;
+        for (Node node : graph.get(v)){
+            if (node == n){
+                return counter;
+            }
+            else{
+                counter++;
             }
         }
-        return null;
+        return counter;
     }
 
     public Map<Vertex, List<Node>> getStartingList(){
@@ -129,6 +144,13 @@ public class Graph_bipartit {
         Edge e = new Edge(v, dest, 0, null);
         Node n = new Node(e, dest);
         n.setFlussedited(true);
+
+        graph.get(v).add(n);
+    }
+
+    public void addReverseEdgeBipartite(Vertex v, Vertex dest){
+        Edge e = new Edge(v, dest, 0, null);
+        Node n = new Node(e, dest);
 
         graph.get(v).add(n);
     }

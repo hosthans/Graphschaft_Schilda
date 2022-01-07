@@ -1,5 +1,6 @@
 package com.hosthans.Algorithms.Aufgabenpakete;
 
+import com.hosthans.Graph.Graph;
 import com.hosthans.Graph.Graph_bipartit;
 import com.hosthans.Graph.Vertex;
 
@@ -70,12 +71,14 @@ public class test {
         Vertex dest = new Vertex("Destination");
         graph.addVertex(dest);
 
+        graph.addDest();
+
   /*      graph.addEdge(src, Worker5, false, 1);
         graph.addEdge(src, Worker1, false, 1);
         graph.addEdge(src, Worker2, false, 1);
         graph.addEdge(src, Worker3, false, 1);
         graph.addEdge(src, Worker4, false, 1);
-*/
+
 
         /*graph.addEdge(Task1, dest, false, 1);
         graph.addEdge(Task2, dest, false, 1);
@@ -85,7 +88,8 @@ public class test {
 
          */
 
-        graph.addDest();
+
+
 
         System.out.println(graph.printGraph());
 

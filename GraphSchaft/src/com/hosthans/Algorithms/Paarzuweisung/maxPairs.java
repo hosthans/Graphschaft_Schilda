@@ -1,8 +1,9 @@
 package com.hosthans.Algorithms.Paarzuweisung;
 
 import com.hosthans.Algorithms.Aufgabenpakete.NodeWParent;
-import com.hosthans.Graph.*;
-import com.sun.jdi.request.VMDeathRequest;
+import com.hosthans.Graph.Graph_bipartit;
+import com.hosthans.Graph.Node;
+import com.hosthans.Graph.Vertex;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,18 +11,46 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
-public class maxFlowBipartite {
+public class maxPairs {
 
     Graph_bipartit graph;
-
-    Vertex src = new Vertex("Source");
     Vertex dest = new Vertex("Destination");
+    Vertex src = new Vertex("Source");
 
-
-    public maxFlowBipartite(Graph_bipartit graph) throws IOException {
+    public maxPairs(Graph_bipartit graph) throws IOException {
         this.graph = graph;
-        //initialize();
+        this.graph.addVertex(dest);
+        this.graph.addVertex(src);
+        initialize();
+        ford();
+        getErgebnis();
 
+
+    }
+
+    public void initialize() throws IOException {
+        for (Vertex v : this.graph.graph.keySet()){
+            if (!v.getMember() && v != dest && v!= src){
+                this.graph.addEdge(v, dest, false, 1);
+                this.graph.addReverseEdgeBipartite(dest, v);
+            }
+            //System.out.println(v.getLabel());
+            if (v.getMember() && v != dest && v!= src){
+                this.graph.addEdge(src, v, false, 1);
+                this.graph.addReverseEdgeBipartite(v, src);
+                System.out.println(v.getLabel());
+                for (int i = 0; i<this.graph.graph.get(v).size(); i++){
+                    //int index = this.graph.graph.get(v).indexOf(n);
+                    Node indes = this.graph.graph.get(v).get(i);
+                    if (this.graph.hasNode(indes.dest, v)){
+                        if ((indes.dest != dest) && ( indes.dest!= src)){
+                            this.graph.graph.get(v).get(i).getE().weight = 1;
+                        }
+
+                    }
+                }
+            }
+        }
 
     }
 
@@ -236,17 +265,16 @@ public class maxFlowBipartite {
         System.out.println(" Folgende Paare können heiraten: ");
 
         for (Vertex v : getFinalGraph().graph.keySet()){
-            if (!v.getMember()){
+            if (!v.getMember() && (v != dest && v!=src)){
                 for (Node n : getFinalGraph().graph.get(v)){
-                    if (n.getE().getWeight() > 0 && n.getDest().getLabel()!="Source" && n.getE().src.getLabel() != "Destination"){
+                    if (n.getE().getWeight() > 0 && n.getE().src!=src && n.getE().dest != dest){
                         System.out.println( ANSI_WHITE_BACKGROUND + ANSI_BLACK + "Mann " + n.getDest().getLabel() + " heiratet folgende Frau: " + v.getLabel());
                     }
                 }
             }
         }
-        System.out.println(ANSI_WHITE_BACKGROUND+"Somit hat jeder eine geile Frau die ihm gefällt");
+        System.out.println(ANSI_WHITE_BACKGROUND+"Somit hat jeder eine geile Frau die ihm gefällt!");
 
-        getGraph();
     }
 
 
@@ -255,7 +283,7 @@ public class maxFlowBipartite {
             //Alle Kanten, die keine Reversekanten sind - auslöschen
             //this.graph.graph.get(v).removeIf(n -> !n.getFlussedited());
             for (int i = 0; i<this.graph.graph.get(v).size(); i++){
-                if (this.graph.graph.get(v).get(i).getE().weight != 2){
+                if (this.graph.graph.get(v).get(i).getE().weight < 1){
                     this.graph.graph.get(v).remove(i);
                 }
             }
@@ -265,3 +293,10 @@ public class maxFlowBipartite {
 
 
 }
+
+
+
+
+
+
+
