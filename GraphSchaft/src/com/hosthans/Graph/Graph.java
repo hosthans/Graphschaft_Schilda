@@ -29,6 +29,10 @@ public class Graph {
     }
 
 
+    public Map<String, Vertex> getKnoten(){
+        return this.Knoten;
+    }
+
 
 
     public void createGraph() throws IOException {
@@ -147,6 +151,8 @@ public class Graph {
     public void addReverseEdge(Vertex v, Vertex dest){
         Edge e = new Edge(v, dest, 0, null);
         Node n = new Node(e, dest);
+
+        n.setFlussedited(true);
 
         graph.get(v).add(n);
     }

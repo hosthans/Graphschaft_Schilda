@@ -1,5 +1,6 @@
 package com.hosthans.Algorithms.Straßennetz;
 
+import com.hosthans.Graph.Graph;
 import com.hosthans.Graph.Graph_NOINPUT;
 import com.hosthans.Graph.Vertex;
 
@@ -7,6 +8,7 @@ import java.io.IOException;
 
 public class test {
     public static void main(String[] args) throws IOException {
+/*
         Graph_NOINPUT graph = new Graph_NOINPUT(false, true);
         Vertex Autobahn = new Vertex("Autobahn");
         Vertex Ampel1 = new Vertex("Ampel1");
@@ -29,11 +31,15 @@ public class test {
 
 
 
-        //com.hosthans.Algorithms.Straßennetz.MaxFlow mf = new com.hosthans.Algorithms.Straßennetz.MaxFlow("Autobahn", "Parkplatz", graph, 23);
 
 
 
         MaxFlow mf = new MaxFlow(Autobahn, Parkplatz, graph, 0);
+*/
+
+        Graph g = new Graph(false, true);
+        MaxFlowInput mfi = new MaxFlowInput("a", "d", g, 0);
+        System.out.println(g.printGraph());
 
 
     }

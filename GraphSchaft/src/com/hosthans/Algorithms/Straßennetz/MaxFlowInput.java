@@ -1,30 +1,34 @@
 package com.hosthans.Algorithms.Straßennetz;
 
-import com.hosthans.Graph.*;
+import com.hosthans.Graph.Graph;
+import com.hosthans.Graph.Graph_bipartit;
+import com.hosthans.Graph.Node;
+import com.hosthans.Graph.Vertex;
 
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Map;
 
-public class MaxFlow {
-
+public class MaxFlowInput {
     final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
     final String ANSI_RED_BACKGROUND = "\u001B[41m";
 
 
 
-    Graph_NOINPUT graph;
+    Graph graph;
     Vertex Quelle;
     Vertex Senke;
-    Graph_NOINPUT residual;
+    Graph residual;
 
 
     int maxFlow = 0;
     int needed;
 
-    public MaxFlow(String Quelle, String Senke, Graph_NOINPUT graph, int needed) throws IOException {
+
+
+    public MaxFlowInput(String Quelle, String Senke, Graph graph, int needed) throws IOException {
         this.graph = graph;
         this.Quelle = this.graph.getKnoten().get(Quelle);
         this.Senke = this.graph.getKnoten().get(Senke);
@@ -35,7 +39,7 @@ public class MaxFlow {
         getErgebnis(this.needed);
     }
 
-    public MaxFlow(Vertex Quelle, Vertex Senke, Graph_NOINPUT graph, int needed) throws IOException {
+    public MaxFlowInput(Vertex Quelle, Vertex Senke, Graph graph, int needed) throws IOException {
         this.graph = graph;
         this.Quelle = Quelle;
         this.Senke = Senke;
@@ -94,7 +98,7 @@ public class MaxFlow {
 
     public LinkedList<Vertex> pfaduebergabe(LinkedList<com.hosthans.Algorithms.Straßennetz.NodeWParent> currentList, Vertex Quelle, Vertex Senke){
         LinkedList<com.hosthans.Algorithms.Straßennetz.NodeWParent> list = new LinkedList<>();
-       com.hosthans.Algorithms.Straßennetz.NodeWParent helper = null;
+        com.hosthans.Algorithms.Straßennetz.NodeWParent helper = null;
         for (com.hosthans.Algorithms.Straßennetz.NodeWParent node : currentList){
             if (node.getVertex().equals(Senke)){
                 list.add(node);
@@ -230,6 +234,13 @@ public class MaxFlow {
         return this.maxFlow;
     }
 
+    public boolean GenugPlatz(int needed){
+        if (this.maxFlow >= needed){
+            return true;
+        }else {
+            return false;
+        }
+    }
 
     public void getErgebnis(int i){
 
@@ -251,12 +262,11 @@ public class MaxFlow {
     }
 
 
-    public Graph_NOINPUT getFinalGraph(){
+    public Graph getFinalGraph(){
         for (Vertex v : this.residual.graph.keySet()){
             //Alle Kanten, die keine Reversekanten sind - auslöschen
             this.residual.graph.get(v).removeIf(n -> !n.getFlussedited());
         }
         return this.residual;
     }
-
 }
