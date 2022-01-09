@@ -1,13 +1,14 @@
 package com.hosthans.Algorithms.Paarzuweisung;
 
 import com.hosthans.Graph.Graph_bipartit;
+import com.hosthans.Graph.Graph_bipartit_NOINPUT;
 import com.hosthans.Graph.Vertex;
 
 import java.io.IOException;
 
 public class test {
     public static void main(String[] args) throws IOException {
-        Graph_bipartit graph = new Graph_bipartit();
+        /*Graph_bipartit graph = new Graph_bipartit();
         Vertex m1 = new Vertex("Peter");
         m1.setMembOfA();
         Vertex m2 = new Vertex("Jonas");
@@ -69,6 +70,12 @@ public class test {
 
 
         maxPairs mp = new maxPairs(graph);
+        System.out.println(graph.printGraph());*/
+
+        Graph_bipartit_NOINPUT graph = new Graph_bipartit_NOINPUT(false, true);
+        maxPairsInput mp = new maxPairsInput(graph);
+        System.out.println(graph.printGraph());
+
 
 
 
