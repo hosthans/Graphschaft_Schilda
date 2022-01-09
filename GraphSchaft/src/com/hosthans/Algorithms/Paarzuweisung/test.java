@@ -68,7 +68,6 @@ public class test {
 
 
 
-        //maxFlowBipartite mf = new maxFlowBipartite(graph);
         maxPairs mp = new maxPairs(graph);
 
 
