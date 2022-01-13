@@ -57,7 +57,7 @@ public class Graph_bipartit_NOINPUT {
             }
         }
         this.rightcount = this.nodecount-this.leftcount;
-        for (int i = 0; i<this.leftcount; i++){
+        for (int i = 0; i<this.rightcount; i++){
             int j = i+1;
             System.out.println("Bitte gebe den Namen deines " + j + ". Knoten der rechten Seite ein");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

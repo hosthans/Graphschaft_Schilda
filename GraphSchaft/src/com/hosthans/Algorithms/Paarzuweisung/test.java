@@ -74,7 +74,8 @@ public class test {
 
         Graph_bipartit_NOINPUT graph = new Graph_bipartit_NOINPUT(false, true);
         maxPairsInput mp = new maxPairsInput(graph);
-        System.out.println(graph.printGraph());
+
+
 
 
 
