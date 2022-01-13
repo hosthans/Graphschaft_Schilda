@@ -1,13 +1,5 @@
 package com.hosthans;
 
-import com.hosthans.Algorithms.Aufgabenpakete.MaxFlow;
-import com.hosthans.Algorithms.Paarzuweisung.maxPairs;
-import com.hosthans.Algorithms.Paarzuweisung.maxPairsInput;
-import com.hosthans.Graph.Graph;
-import com.hosthans.Graph.Graph_bipartit_NOINPUT;
-import com.hosthans.Graph.Node;
-import com.hosthans.Graph.Vertex;
-
 import java.io.IOException;
 
 public class testung {

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class Graph_bipartit_NOINPUT {
+public class Graph_bipartit_WINPUT {
 
     public Map<Vertex, List<Node>> graph = new HashMap<>();
     public Map<String, Vertex> Knoten = new HashMap<>();
@@ -24,7 +24,7 @@ public class Graph_bipartit_NOINPUT {
 
 
 
-    public Graph_bipartit_NOINPUT(Boolean isbidirectional, Boolean isweighted) throws IOException {
+    public Graph_bipartit_WINPUT(Boolean isbidirectional, Boolean isweighted) throws IOException {
         this.isbidirectional = isbidirectional;
         this.isweighted = isweighted;
         createGraph();

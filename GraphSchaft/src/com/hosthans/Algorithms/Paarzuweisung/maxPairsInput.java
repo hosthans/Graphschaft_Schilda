@@ -1,8 +1,7 @@
 package com.hosthans.Algorithms.Paarzuweisung;
 
 import com.hosthans.Algorithms.Aufgabenpakete.NodeWParent;
-import com.hosthans.Graph.Graph_bipartit;
-import com.hosthans.Graph.Graph_bipartit_NOINPUT;
+import com.hosthans.Graph.Graph_bipartit_WINPUT;
 import com.hosthans.Graph.Node;
 import com.hosthans.Graph.Vertex;
 
@@ -14,11 +13,11 @@ import java.util.List;
 
 public class maxPairsInput {
 
-    Graph_bipartit_NOINPUT graph;
+    Graph_bipartit_WINPUT graph;
     Vertex dest = new Vertex("Destination");
     Vertex src = new Vertex("Source");
 
-    public maxPairsInput(Graph_bipartit_NOINPUT graph) throws IOException {
+    public maxPairsInput(Graph_bipartit_WINPUT graph) throws IOException {
         this.graph = graph;
         this.graph.addVertex(dest);
         this.graph.addVertex(src);
@@ -279,7 +278,7 @@ public class maxPairsInput {
     }
 
 
-    public Graph_bipartit_NOINPUT getFinalGraph(){
+    public Graph_bipartit_WINPUT getFinalGraph(){
         for (Vertex v : this.graph.graph.keySet()){
             //Alle Kanten, die keine Reversekanten sind - auslöschen
             //this.graph.graph.get(v).removeIf(n -> !n.getFlussedited());

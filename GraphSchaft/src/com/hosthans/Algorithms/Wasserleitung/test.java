@@ -9,8 +9,7 @@ import java.io.IOException;
 
 public class test {
     public static void main(String[] args) throws IOException {
-        /*Graph graph = new Graph(false, true);
-        System.out.println(graph.printGraph());*/
+
         Graph_NOINPUT graph = new Graph_NOINPUT(false, true);
         Vertex Wasserwerk = new Vertex("Wasserwerk");
         Vertex Thoma = new Vertex("Thoma");
