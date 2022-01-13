@@ -1,6 +1,8 @@
 package com.hosthans.Algorithms.Paarzuweisung;
 
+import com.hosthans.Graph.Graph_bipartit;
 import com.hosthans.Graph.Graph_bipartit_WINPUT;
+import com.hosthans.Graph.Vertex;
 
 import java.io.IOException;
 
@@ -53,7 +55,7 @@ public class test {
         graph.addEdge(f3, m1, false, 0); //Antonie --> Peter
         graph.addEdge(f3, m3, false, 0); //Antonie --> Felix
         graph.addEdge(f4, m3, false, 0); //Lena --> Felix
-        graph.addEdge(f4, m4, false, 0); //Lena --> Aaron
+        graph.addEdge(f4, m4, false, 0); //Lena --> Mats
         graph.addEdge(f5, m1, false, 0); //Ida --> Peter
         graph.addEdge(f5, m5, false, 0); //Ida --> Aaron
         graph.addEdge(f5, m4, false, 0); //Ida --> Mats
@@ -67,8 +69,7 @@ public class test {
 
 
 
-        maxPairs mp = new maxPairs(graph);
-        System.out.println(graph.printGraph());*/
+        maxPairs mp = new maxPairs(graph);*/
 
         Graph_bipartit_WINPUT graph = new Graph_bipartit_WINPUT(false, true);
         maxPairsInput mp = new maxPairsInput(graph);

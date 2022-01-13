@@ -273,7 +273,7 @@ public class maxPairs {
                 }
             }
         }
-        System.out.println(ANSI_WHITE_BACKGROUND+"Somit hat jeder eine geile Frau die ihm gefällt!");
+        System.out.println(ANSI_WHITE_BACKGROUND+"Somit hat jeder eine Frau die ihm gefällt, und die Ihn auch heiraten möchte!");
 
     }
 
