@@ -5,8 +5,6 @@ import com.hosthans.Graph.*;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
 
 public class MaxFlow {
 
@@ -18,33 +16,25 @@ public class MaxFlow {
 
 
     Graph_bipartit graph;
-    Vertex Quelle;
-    Vertex Senke;
-    Graph_bipartit residual;
+    Vertex Quelle = new Vertex("Source");
+    Vertex Senke = new Vertex("Destination");
+
 
 
     int maxFlow = 0;
     int needed;
 
-    public MaxFlow(String Quelle, String Senke, Graph_bipartit graph, int needed) throws IOException {
-        this.graph = graph;
-        this.Quelle = this.graph.getKnoten().get(Quelle);
-        this.Senke = this.graph.getKnoten().get(Senke);
-        this.residual = graph;
-        this.needed = needed;
-        initialize();
-        ford();
-        getErgebnis(this.needed);
-    }
 
-    public MaxFlow(Vertex Quelle, Vertex Senke, Graph_bipartit graph, int needed) throws IOException {
+    public MaxFlow(Graph_bipartit graph, int needed) throws IOException {
         this.graph = graph;
-        this.Quelle = Quelle;
-        this.Senke = Senke;
-        this.residual = graph;
+        this.graph.addVertex(Quelle);
+        this.graph.addVertex(Senke);
         this.needed = needed;
-        initialize();
+        this.graph.addDest();
 
+
+
+        initialize();
         ford();
         getErgebnis(this.needed);
     }
@@ -53,14 +43,14 @@ public class MaxFlow {
     public void initialize() throws IOException {
 
 
-        for (Vertex v : this.residual.graph.keySet()){
-            for (Node n : this.residual.graph.get(v)){
+        for (Vertex v : this.graph.graph.keySet()){
+            for (Node n : this.graph.graph.get(v)){
                 if (n.getE().weight != 0){
-                    this.residual.addReverseEdge(n.getE().dest, v);
+                    this.graph.addReverseEdge(n.getE().dest, v);
                 }
             }
         }
-        System.out.println(residual.printGraph());
+        System.out.println(graph.printGraph());
     }
 
 
@@ -78,7 +68,7 @@ public class MaxFlow {
         while (!queue.isEmpty()){
             Vertex current = queue.poll();
 
-            for (Node n : residual.getNeighbors(current)){
+            for (Node n : graph.getNeighbors(current)){
                 if ((!visited.contains(n.dest)) && (n.getE().getWeight() > 0)){
                     if (n.getDest().equals(Senke)){
                         traversed.add(new NodeWParent(n.getDest()));
@@ -141,7 +131,7 @@ public class MaxFlow {
         while (!queue.isEmpty()){
             Vertex current = queue.poll();
 
-            for (Node n : residual.getNeighbors(current)){
+            for (Node n : graph.getNeighbors(current)){
                 if ((!visited.contains(n.dest)) && (n.getE().getWeight() > 0)){
                     //wenn Knoten gleich Endknoten
                     if (n.dest.equals(Senke)){
@@ -168,7 +158,7 @@ public class MaxFlow {
             int counter = 0;
 
             for (Vertex v : pfad) {
-                LinkedList<Node> nodes = (LinkedList<Node>) residual.getNeighbors(v);
+                LinkedList<Node> nodes = (LinkedList<Node>) graph.getNeighbors(v);
                 // wir gehen alle knoten des paths bis auf den endknoten ab und speichern seine nachbarn
                 // dann müssen wir den destination-Vertex vom aktuellen knoten vom path in der nodes liste finden
                 // dann weisen wir restcapacity die minimale kantengewichtung zu
@@ -191,7 +181,7 @@ public class MaxFlow {
             }
 
             for (Vertex v : pfad) {
-                LinkedList<Node> nodes = (LinkedList<Node>) residual.getNeighbors(v);
+                LinkedList<Node> nodes = (LinkedList<Node>) graph.getNeighbors(v);
                 Vertex destVertex = pfad.get((pfad.indexOf(v)) + 1);
                 for (Node n : nodes) {
                     if (n.getDest() == destVertex) {
@@ -213,7 +203,7 @@ public class MaxFlow {
                 Vertex v = pfad.get(i);
 
                 // nachbarn von v
-                LinkedList<Node> nodes = (LinkedList<Node>) residual.getNeighbors(v);
+                LinkedList<Node> nodes = (LinkedList<Node>) graph.getNeighbors(v);
                 Vertex destVertex = pfad.get((pfad.indexOf(v)) - 1);
 
                 for (Node n : nodes) {
@@ -261,11 +251,11 @@ public class MaxFlow {
 
 
     public Graph_bipartit getFinalGraph(){
-        for (Vertex v : this.residual.graph.keySet()){
+        for (Vertex v : this.graph.graph.keySet()){
             //Alle Kanten, die keine Reversekanten sind - auslöschen
-            this.residual.graph.get(v).removeIf(n -> !n.getFlussedited());
+            this.graph.graph.get(v).removeIf(n -> !n.getFlussedited());
         }
-        return this.residual;
+        return this.graph;
     }
 
 }

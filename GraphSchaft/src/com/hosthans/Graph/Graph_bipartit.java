@@ -102,7 +102,7 @@ public class Graph_bipartit {
 
     public void addVertex(Vertex vertex) throws IOException {
         graph.put(vertex, new LinkedList<Node>());
-        Knoten.put(vertex.getLabel(), vertex);
+        Knoten.put(vertex.label, vertex);
 
 
 

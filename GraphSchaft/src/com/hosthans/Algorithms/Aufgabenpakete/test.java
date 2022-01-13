@@ -50,7 +50,7 @@ public class test {
         graph.addEdge(Worker3, Task4, false, 1);
 
         graph.addEdge(Worker4, Task1, false, 1);
-        graph.addEdge(Worker4, Task2, false, 1);
+        graph.addEdge(Worker4, Task4, false, 1);
 
 
 
@@ -66,12 +66,10 @@ public class test {
         graph.addEdge(Worker7, Task6, false, 1);
 
 
-        Vertex src = new Vertex("Source");
-        graph.addVertex(src);
-        Vertex dest = new Vertex("Destination");
-        graph.addVertex(dest);
 
-        graph.addDest();
+
+
+
 
   /*      graph.addEdge(src, Worker5, false, 1);
         graph.addEdge(src, Worker1, false, 1);
@@ -93,8 +91,7 @@ public class test {
 
         System.out.println(graph.printGraph());
 
-
-        MaxFlow mf = new MaxFlow("Source","Destination",graph, 0);
+        MaxFlow mf = new MaxFlow(graph, 0);
         //System.out.println(mf.getFinalGraph().printGraph());
     }
 }
