@@ -1,5 +1,7 @@
 package com.hosthans.Graph;
 
+import com.hosthans.Algorithms.Wasserleitung.MaxFlowInput;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,9 +12,13 @@ public class Graph {
     public Map<String, Vertex> Knoten = new HashMap<>();
 
     Vertex ungerade;
+    public Vertex startK;
+    public Vertex endK;
 
     Integer nodecount = 0;
     Integer edgecount = 0;
+
+    public Integer needed = 0;
 
 
     boolean hasedges;
@@ -31,6 +37,14 @@ public class Graph {
 
     public Map<String, Vertex> getKnoten(){
         return this.Knoten;
+    }
+
+    public Vertex getSource(String name){
+        return this.Knoten.get(name);
+    }
+
+    public Vertex getDestination(String name){
+        return this.Knoten.get(name);
     }
 
 
@@ -108,6 +122,27 @@ public class Graph {
 
             }
         }
+
+        System.out.println("Willst du einen maximalen Fluss berechnen? [j/n]");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String input = reader.readLine();
+        if (input.equals("j")){
+            System.out.println("Bitte gebe den Startknoten des Graphen ein");
+            BufferedReader start = new BufferedReader(new InputStreamReader(System.in));
+            String startKString = start.readLine();
+            this.startK = getSource(startKString);
+
+            System.out.println("Bitte gebe den Zielknoten des Graphen ein");
+            BufferedReader end = new BufferedReader(new InputStreamReader(System.in));
+            String EndkString = end.readLine();
+            this.endK = getDestination(EndkString);
+
+
+            System.out.println("Wie viel Kapazität wird benötigt?");
+            this.needed = scanner.nextInt();
+        }
+
+
     }
 
 

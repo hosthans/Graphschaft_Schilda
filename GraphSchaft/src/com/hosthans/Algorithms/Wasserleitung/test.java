@@ -10,7 +10,7 @@ import java.io.IOException;
 public class test {
     public static void main(String[] args) throws IOException {
 
-        Graph_NOINPUT graph = new Graph_NOINPUT(false, true);
+        /*Graph_NOINPUT graph = new Graph_NOINPUT(false, true);
         Vertex Wasserwerk = new Vertex("Wasserwerk");
         Vertex Thoma = new Vertex("Thoma");
         Vertex Dogan = new Vertex("Dogan");
@@ -39,8 +39,11 @@ public class test {
 
 
 
-        MaxFlow mf = new MaxFlow("Wasserwerk", "Supermarkt", graph, 21);
-        System.out.println();
+        MaxFlow mf = new MaxFlow("Wasserwerk", "Supermarkt", graph, 21);*/
+
+        Graph g = new Graph(false, true);
+        MaxFlowInput mf = new MaxFlowInput(g.startK, g.endK, g, g.needed);
+
     }
 
 }

@@ -35,7 +35,7 @@ public class test {
         graph.addEdge(m2, f1, false,0); //Jonas --> Marie
         graph.addEdge(m2, f2, false,0); //Jonas --> Susanne
         graph.addEdge(m2, f5, false,0); //Jonas --> Ida
-        graph.addEdge(m3, f1, false,0); // Felix --> Marie
+        graph.addEdge(m3, f1, false,0); //Felix --> Marie
         graph.addEdge(m3, f3, false,0); //Felix -_> Antonie
         graph.addEdge(m4, f1, false,0); //Mats --> Marie
         graph.addEdge(m4, f3, false,0); //Mats --> Antonie
