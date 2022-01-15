@@ -2,6 +2,7 @@ package com.hosthans.Algorithms.Aufgabenpakete;
 
 import com.hosthans.Graph.Graph;
 import com.hosthans.Graph.Graph_bipartit;
+import com.hosthans.Graph.Graph_bipartit_WINPUT;
 import com.hosthans.Graph.Vertex;
 
 import java.io.IOException;
@@ -43,27 +44,27 @@ public class test {
         graph.addEdge(Worker1, Task3, false, 1);
         graph.addEdge(Worker1, Task5, false, 1);
 
-        graph.addEdge(Worker2, Task2, false, 1);
-        graph.addEdge(Worker2, Task7, false, 1);
+        graph.addEdge(Worker2, Task1, false, 1);
+        graph.addEdge(Worker2, Task4, false, 1);
 
         graph.addEdge(Worker3, Task1, false, 1);
-        graph.addEdge(Worker3, Task4, false, 1);
+        graph.addEdge(Worker3, Task2, false, 1);
 
-        graph.addEdge(Worker4, Task1, false, 1);
+        graph.addEdge(Worker4, Task5, false, 1);
         graph.addEdge(Worker4, Task4, false, 1);
 
 
 
         //graph.addEdge(Worker5, Task1, false, 1);
         graph.addEdge(Worker5, Task6, false, 1);
-        graph.addEdge(Worker5, Task1, false, 1);
-        graph.addEdge(Worker5, Task3, false, 1);
+        graph.addEdge(Worker5, Task7, false, 1);
+        graph.addEdge(Worker5, Task5, false, 1);
 
-        graph.addEdge(Worker6, Task5, false, 1);
-        graph.addEdge(Worker6, Task7, false, 1);
+        graph.addEdge(Worker6, Task4, false, 1);
+        graph.addEdge(Worker6, Task6, false, 1);
 
-        graph.addEdge(Worker7, Task3, false, 1);
-        graph.addEdge(Worker7, Task6, false, 1);
+        graph.addEdge(Worker7, Task5, false, 1);
+        graph.addEdge(Worker7, Task7, false, 1);
 
 
 
@@ -93,5 +94,10 @@ public class test {
 
         MaxFlow mf = new MaxFlow(graph, 0);
         //System.out.println(mf.getFinalGraph().printGraph());
+/*
+        Graph_bipartit_WINPUT g = new Graph_bipartit_WINPUT(false, true);
+        MaxFlowInput mf = new MaxFlowInput(g,0);
+        */
+
     }
 }

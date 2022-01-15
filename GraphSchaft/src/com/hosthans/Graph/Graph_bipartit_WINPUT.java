@@ -97,30 +97,28 @@ public class Graph_bipartit_WINPUT {
 
 
             }
-        } else {
-            for (int i = 0; i<edgecount; i++){
-                //Hier soll addEdge() ausgeführt werden
-                System.out.print("Anfangsknoten: ");
-                BufferedReader anfangsk = new BufferedReader(new InputStreamReader(System.in));
-                String Anfangsknoten = anfangsk.readLine();
+        }
 
-                System.out.print("Zielknoten: ");
-                BufferedReader Zielkn = new BufferedReader(new InputStreamReader(System.in));
-                String Zielknoten = anfangsk.readLine();
+    }
 
-
-                Integer weight = 1;
-
-
-                addEdge(Knoten.get(Anfangsknoten), Knoten.get(Zielknoten), isbidirectional, weight);
-
-
-
-
-
+    public void addDest() throws IOException {
+        for (Vertex v : graph.keySet()){
+            if (v.isMembOfA && !Objects.equals(v.getLabel(), "Destination")){
+                Vertex src = Knoten.get("Source");
+                addEdge(src, v, false, 1);
+            }
+            else if (!v.isMembOfA && (!Objects.equals(v.getLabel(), "Source") && (!Objects.equals(v.getLabel(), "Destination")))){
+                Vertex dest = Knoten.get("Destination");
+                addEdge(v, dest, false, 1);
+            }
+            else {
+                System.out.println("Fail");
             }
         }
+
+
     }
+
 
     public void addReverseEdgeBipartite(Vertex v, Vertex dest){
         Edge e = new Edge(v, dest, 0, null);

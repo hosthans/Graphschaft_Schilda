@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class test {
     public static void main(String[] args) throws IOException {
-        /*Graph_bipartit graph = new Graph_bipartit();
+     /*   Graph_bipartit graph = new Graph_bipartit();
         Vertex m1 = new Vertex("Peter");
         m1.setMembOfA();
         Vertex m2 = new Vertex("Jonas");

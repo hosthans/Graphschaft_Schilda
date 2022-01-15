@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class test {
     public static void main(String[] args) throws IOException {
-/*
+
         Graph_NOINPUT graph = new Graph_NOINPUT(false, true);
         Vertex Autobahn = new Vertex("Autobahn");
         Vertex Ampel1 = new Vertex("Ampel1");
@@ -27,18 +27,11 @@ public class test {
         graph.addEdge(Ampel3, Parkplatz, false, 10);
         graph.addEdge(Ampel4, Parkplatz, false, 17);
 
-
-
-
-
-
-
-
         MaxFlow mf = new MaxFlow(Autobahn, Parkplatz, graph, 0);
-*/
+
 
         Graph g = new Graph(false, true);
-        MaxFlowInput mfi = new MaxFlowInput("a", "d", g, 0);
+        MaxFlowInput mfi = new MaxFlowInput(g.startK, g.endK, g, 0);
         System.out.println(g.printGraph());
 
 
