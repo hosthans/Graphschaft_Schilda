@@ -1,9 +1,6 @@
 package com.hosthans.Algorithms.Wasserleitung;
 
-import com.hosthans.Graph.Edge;
 import com.hosthans.Graph.Graph;
-import com.hosthans.Graph.Graph_NOINPUT;
-import com.hosthans.Graph.Vertex;
 
 import java.io.IOException;
 
@@ -41,7 +38,7 @@ public class test {
 
         MaxFlow mf = new MaxFlow("Wasserwerk", "Supermarkt", graph, 21);*/
 
-        Graph g = new Graph(false, true);
+        Graph g = new Graph(false, true, true);
         MaxFlowInput mf = new MaxFlowInput(g.startK, g.endK, g, g.needed);
 
     }

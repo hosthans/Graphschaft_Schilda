@@ -1,14 +1,12 @@
 package com.hosthans.Algorithms.Straßennetz;
 
 import com.hosthans.Graph.Graph;
-import com.hosthans.Graph.Graph_bipartit;
 import com.hosthans.Graph.Node;
 import com.hosthans.Graph.Vertex;
 
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Map;
 
 public class MaxFlowInput {
     final String ANSI_BLACK = "\u001B[30m";
@@ -21,6 +19,8 @@ public class MaxFlowInput {
     Vertex Quelle;
     Vertex Senke;
     Graph residual;
+
+
 
 
     int maxFlow = 0;

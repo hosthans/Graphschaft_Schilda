@@ -1,6 +1,5 @@
 package com.hosthans.Algorithms.Straßennetz;
 
-import com.hosthans.Graph.Graph;
 import com.hosthans.Graph.Graph_NOINPUT;
 import com.hosthans.Graph.Vertex;
 
@@ -30,9 +29,7 @@ public class test {
         MaxFlow mf = new MaxFlow(Autobahn, Parkplatz, graph, 0);
 
 
-        Graph g = new Graph(false, true);
-        MaxFlowInput mfi = new MaxFlowInput(g.startK, g.endK, g, 0);
-        System.out.println(g.printGraph());
+
 
 
     }

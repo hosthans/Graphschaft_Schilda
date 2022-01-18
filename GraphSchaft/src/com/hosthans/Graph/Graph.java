@@ -1,7 +1,5 @@
 package com.hosthans.Graph;
 
-import com.hosthans.Algorithms.Wasserleitung.MaxFlowInput;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,15 +19,16 @@ public class Graph {
     public Integer needed = 0;
 
 
-    boolean hasedges;
+    boolean needflow;
 
     public boolean isbidirectional;
     public boolean isweighted;
 
 
 
-    public Graph(Boolean isbidirectional, Boolean isweighted) throws IOException {
+    public Graph(Boolean isbidirectional, Boolean isweighted, boolean needflow) throws IOException {
         this.isbidirectional = isbidirectional;
+        this.needflow = needflow;
         this.isweighted = isweighted;
         createGraph();
     }
@@ -137,9 +136,11 @@ public class Graph {
             String EndkString = end.readLine();
             this.endK = getDestination(EndkString);
 
+            if (this.needflow){
+                System.out.println("Wie viel Kapazität wird benötigt?");
+                this.needed = scanner.nextInt();
+            }
 
-            System.out.println("Wie viel Kapazität wird benötigt?");
-            this.needed = scanner.nextInt();
         }
 
 

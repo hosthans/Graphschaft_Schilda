@@ -121,14 +121,7 @@ public class Hierholzer {
         this.eulerCircuitVertieces.addAll(this.cyclesVertex.get(0));
         eulercircuitedges.addAll(this.cyclesEdges.get(0));
 
-        //nur zur Überprüfung
-        for (List<Vertex> l : this.cyclesVertex){
-            System.out.println(this.cyclesVertex.indexOf(l));
-            System.out.println("----------------------------");
-            for (int i = 0; i<l.size(); i++){
-                System.out.println(l.get(i).getLabel());
-            }
-        }
+
 
         //alle anderen Zyklen hinzufügen
         for (int i  = 1; i<this.cyclesVertex.size(); i++){
@@ -243,13 +236,6 @@ public class Hierholzer {
         this.eulerCircuitVertieces.addAll(this.cyclesVertex.get(0));
         eulercircuitedges.addAll(this.cyclesEdges.get(0));
 
-        for (List<Vertex> l : this.cyclesVertex){
-            System.out.println(this.cyclesVertex.indexOf(l));
-            System.out.println("-------------------------------");
-            for (int i = 0; i<l.size(); i++){
-                System.out.println(l.get(i).getLabel());
-            }
-        }
         //alle anderen Zyklen hinzufügen
         for (int i  = 1; i<this.cyclesVertex.size(); i++){
             int index = this.eulerCircuitVertieces.indexOf(this.cyclesVertex.get(i).get(0));
