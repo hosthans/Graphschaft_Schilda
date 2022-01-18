@@ -1,6 +1,5 @@
 package com.hosthans.Algorithms.Postbote;
 
-import com.hosthans.Graph.Graph;
 import com.hosthans.Graph.Graph_NOINPUT;
 import com.hosthans.Graph.Vertex;
 
@@ -9,7 +8,6 @@ import java.io.IOException;
 public class test {
     public static void main(String[] args) throws IOException {
 
-        //Graph graph = new Graph(true, false);
 
         Graph_NOINPUT graph = new Graph_NOINPUT(true, false);
 
@@ -31,9 +29,6 @@ public class test {
         graph.addEdge(c,e,true,0);
         graph.addEdge(c,f,true,0);
         graph.addEdge(e,f,true,0);
-
-        //Hierholzer hierholzer = new Hierholzer(graph);
-
 
         HierholzerNoInpu hierholzerNoInpu = new HierholzerNoInpu(graph);
 

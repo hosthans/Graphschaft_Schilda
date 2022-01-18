@@ -1,18 +1,14 @@
 package com.hosthans.Algorithms.Aufgabenpakete;
 
-import com.hosthans.Graph.Graph;
 import com.hosthans.Graph.Graph_bipartit;
-import com.hosthans.Graph.Graph_bipartit_WINPUT;
 import com.hosthans.Graph.Vertex;
 
 import java.io.IOException;
 
 public class test {
     public static void main(String[] args) throws IOException {
-/*
+
         Graph_bipartit graph = new Graph_bipartit();
-
-
 
         Vertex Worker1 = new Vertex("Maier");
         Vertex Worker2 = new Vertex("Müller");
@@ -39,7 +35,6 @@ public class test {
         Vertex Task7 = new Vertex("Hochzeitsplanung");
 
 
-
         graph.addEdge(Worker1, Task1, false, 1);
         graph.addEdge(Worker1, Task3, false, 1);
         graph.addEdge(Worker1, Task5, false, 1);
@@ -53,8 +48,6 @@ public class test {
         graph.addEdge(Worker4, Task5, false, 1);
         graph.addEdge(Worker4, Task4, false, 1);
 
-
-
         //graph.addEdge(Worker5, Task1, false, 1);
         graph.addEdge(Worker5, Task6, false, 1);
         graph.addEdge(Worker5, Task7, false, 1);
@@ -66,23 +59,11 @@ public class test {
         graph.addEdge(Worker7, Task5, false, 1);
         graph.addEdge(Worker7, Task7, false, 1);
 
-
-
-
-
-
-
-
-
-
-
         System.out.println(graph.printGraph());
 
         MaxFlow mf = new MaxFlow(graph, 0);
-        //System.out.println(mf.getFinalGraph().printGraph());
-*/
-        Graph_bipartit_WINPUT g = new Graph_bipartit_WINPUT(false, true);
-        MaxFlowInput mf = new MaxFlowInput(g,0);
+
+
 
 
     }
