@@ -169,11 +169,6 @@ public class Hierholzer {
                 List<Node> edges = graph.getNeighbors(currentVertex);
 
 
-                //falls keine Kante mehr vorhanden __> Graph nicht zusammenhängend
-                /*if (edges.isEmpty()){
-                    throw new IllegalArgumentException("graph muss zusammenhängend sein");
-                }*/
-
                 //Zufälliger Kntoen aus Kantenliste
                 int randomNumber;
                 if (edges.size()>0){
