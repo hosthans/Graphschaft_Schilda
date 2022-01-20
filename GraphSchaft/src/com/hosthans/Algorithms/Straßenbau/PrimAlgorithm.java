@@ -34,9 +34,9 @@ public class PrimAlgorithm {
         doalgotithmwoutI();
     }
 
-    public void doalgotithm(){
+    public void doalgotithm(){          //O(V) + O(E) + (O(E) * (O(E) + O(V*E)) = O(V) + O(E) + O(E^2) + O(V*E^2) = O(V) * O(E^2)
         int counter = 0;
-        for (Vertex v : g.getGraphMap().keySet()) {
+        for (Vertex v : g.getGraphMap().keySet()) {             //O(V)
             //allen den maximalen (quasi unendlich für Integer) Wert geben
             QNode node = new QNode(v, Integer.MAX_VALUE);
             //Vorgänger (Predecessor) wird auf Null gesetzt
@@ -52,14 +52,14 @@ public class PrimAlgorithm {
         System.out.println(priorityQueue.peek());
 
         //während die Menge Q (priorityQueue) nicht leer ist
-        while (!priorityQueue.isEmpty()) {
+        while (!priorityQueue.isEmpty()) {                       //O(E)
             //Counter für Iterationen
             counter++;
 
             System.out.println(counter + ". Durchlauf: " + priorityQueue);
             //Um die Priotitätswarteschlange sortieren zu können, müssen alle Elemente vorerst gelöscht, und wieder eingefügt werdem
             priorityQueue.clear();
-            for (int i = 0; i < Helper.size(); i++) {
+            for (int i = 0; i < Helper.size(); i++) {           //O(E) --> jede Kante neu Hinzufügen um zu sortieren
                 priorityQueue.add(Helper.get(i));
             }
             //
@@ -71,12 +71,12 @@ public class PrimAlgorithm {
             Helper.remove(u);
 
             //in diese Liste alle Knoten, die mit Node u adjazent sind, einfügen
-            List<Node> adjList = g.getNeighbors(u.getV());
+            List<Node> adjList = g.getNeighbors(u.getV());      //O(V) = O(V)
 
             //durch alle Knoten der neuen Liste iterieren
-            for (Node v : adjList) {
+            for (Node v : adjList) {                            //O(V) * O(E)
                 QNode vReference = null;
-                for (int i = 0; i < Helper.size(); i++) {
+                for (int i = 0; i < Helper.size(); i++) {       //O(E)
                     if (Helper.get(i).getV() == v.getE().dest) {
                         vReference = Helper.get(i);
                     }
@@ -92,7 +92,7 @@ public class PrimAlgorithm {
 
         System.out.println("----------------------------------------------------------------------------------------------------------------------------");
         int lengthcounter = 0;
-        for (int i = 0; i<this.visited.size(); i++){
+        for (int i = 0; i<this.visited.size(); i++){            //O(E)
             lengthcounter = lengthcounter + this.visited.get(i).weight;
             if (i < 1){
                 System.out.println( ANSI_YELLOW + "Startknoten: " + visited.get(i).getV().getLabel().toString() + " " + visited.get(i).weight);

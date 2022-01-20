@@ -39,7 +39,9 @@ public class Hierholzer {
 
     }
 
-    public void EulerWeg(){
+    //O(E*V)
+
+    public void EulerWeg(){         //O(E*V) + O(V)
         //System.out.println("Muss gemacht werden - nicht alle Knoten Geraden Grad");
             int counter = 0;
             //Zufallsknoten als Startknoten wählen (muss ungeraden Grad haben)
@@ -53,7 +55,7 @@ public class Hierholzer {
             Vertex currentcycleStartAEnd = start;
             Vertex currentVertex = currentcycleStartAEnd;
 
-            while (!graph.getEdgeSet().isEmpty()){
+            while (!graph.getEdgeSet().isEmpty()){          //O(E) * O(E) = O(E^2)
                 LinkedList<Vertex> currentCycleNodes = new LinkedList<Vertex>();
                 LinkedList<Edge> currentCycleEdges = new LinkedList<Edge>();
                 do {
@@ -90,7 +92,7 @@ public class Hierholzer {
                     }
 
                     //wird benötigt, da Ergebnis sonst falsch (Bricht ab und fängt neuen Zyklus bei Startknoten an)
-                } while (graph.hasEdges());
+                } while (graph.hasEdges()); //O(V)
                 //Brauch letzten JKnoten nicht hinzufügen, da dieser ja dem ersten entspricht
 
                 currentCycleNodes.add(currentcycleStartAEnd);
@@ -101,7 +103,7 @@ public class Hierholzer {
 
                 //Durch alle Knoten iterieren, ob man noch Knoten mit Kanten hat, die nicht verwendet wurden
                 if (!this.graph.getEdgeSet().isEmpty()){
-                    for (Vertex v : graph.graph.keySet()){
+                    for (Vertex v : graph.graph.keySet()){ //O(V)
                         if (graph.graph.get(v).size() > 0 && currentCycleNodes.contains(v)){
                             currentcycleStartAEnd = v;
                             currentVertex = currentcycleStartAEnd;
@@ -114,7 +116,7 @@ public class Hierholzer {
 
     }
 
-    public void EulerWegBerechnen(){
+    public void EulerWegBerechnen(){                //O(V)
         System.out.println("EulerWeg");
         //erst ersten Zyklus hinzufügen
 
@@ -124,7 +126,7 @@ public class Hierholzer {
 
 
         //alle anderen Zyklen hinzufügen
-        for (int i  = 1; i<this.cyclesVertex.size(); i++){
+        for (int i  = 1; i<this.cyclesVertex.size(); i++){          //O(V)
             int index = this.eulerCircuitVertieces.indexOf(this.cyclesVertex.get(i).get(0));
 
             this.eulerCircuitVertieces.remove(index);
