@@ -34,7 +34,7 @@ public class PrimAlgorithm {
         doalgotithmwoutI();
     }
 
-    public void doalgotithm(){          //O(V) + O(E) + (O(E) * (O(E) + O(V*E)) = O(V) + O(E) + O(E^2) + O(V*E^2) = O(V) * O(E^2)
+    public void doalgotithm(){          //O(V^2) * O(E)
         int counter = 0;
         for (Vertex v : g.getGraphMap().keySet()) {             //O(V)
             //allen den maximalen (quasi unendlich für Integer) Wert geben
@@ -52,14 +52,14 @@ public class PrimAlgorithm {
         System.out.println(priorityQueue.peek());
 
         //während die Menge Q (priorityQueue) nicht leer ist
-        while (!priorityQueue.isEmpty()) {                       //O(E)
+        while (!priorityQueue.isEmpty()) {                       //O(V) * (O(V)*O(E))
             //Counter für Iterationen
             counter++;
 
             System.out.println(counter + ". Durchlauf: " + priorityQueue);
             //Um die Priotitätswarteschlange sortieren zu können, müssen alle Elemente vorerst gelöscht, und wieder eingefügt werdem
             priorityQueue.clear();
-            for (int i = 0; i < Helper.size(); i++) {           //O(E) --> jede Kante neu Hinzufügen um zu sortieren
+            for (int i = 0; i < Helper.size(); i++) {           //O(V) --> jede Kante neu Hinzufügen um zu sortieren
                 priorityQueue.add(Helper.get(i));
             }
             //
@@ -76,7 +76,7 @@ public class PrimAlgorithm {
             //durch alle Knoten der neuen Liste iterieren
             for (Node v : adjList) {                            //O(V) * O(E)
                 QNode vReference = null;
-                for (int i = 0; i < Helper.size(); i++) {       //O(E)
+                for (int i = 0; i < Helper.size(); i++) {       //O(V)
                     if (Helper.get(i).getV() == v.getE().dest) {
                         vReference = Helper.get(i);
                     }

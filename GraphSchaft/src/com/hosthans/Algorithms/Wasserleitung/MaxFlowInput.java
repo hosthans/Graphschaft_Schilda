@@ -64,7 +64,7 @@ public class MaxFlowInput {
     //nachdem PFad existiert --> erstellen
     public LinkedList<Vertex> PfadErstellenBreitensuche(Vertex Quelle, Vertex Senke){
 
-                                                        //O(V) * O(E)
+                                                        //O(V) * O(E) + O(N^2)
 
         HashSet<Vertex> visited = new HashSet<>();
         LinkedList<Vertex> queue = new LinkedList<>();
@@ -93,16 +93,16 @@ public class MaxFlowInput {
             }
         }
 
-        return pfaduebergabe(traversed, Quelle, Senke);     //O(V*E)
+        return pfaduebergabe(traversed, Quelle, Senke);     //O(V*V)
     }
 
     public LinkedList<Vertex> pfaduebergabe(LinkedList<NodeWParent> currentList, Vertex Quelle, Vertex Senke){
 
-                                                                        //O(E) + O(V * E) + O(E) = O(V*E)
+                                                                        //O(V) + O(V * V) + O(V) = O(V*V)
 
         LinkedList<NodeWParent> list = new LinkedList<>();
         NodeWParent helper = null;
-        for (NodeWParent node : currentList){               //O(E)
+        for (NodeWParent node : currentList){               //O(V)
             if (node.getVertex().equals(Senke)){
                 list.add(node);
             } else if (node.getVertex().equals(Quelle)){
@@ -110,8 +110,8 @@ public class MaxFlowInput {
             }
         }
 
-        while (!list.getLast().getParent().equals(Quelle)){     //O(V-1) * O(E) = O(V) * O(E)
-            for (NodeWParent node : currentList){               //O(E)
+        while (!list.getLast().getParent().equals(Quelle)){     //O(V-1) * O(V) = O(V) * O(V)
+            for (NodeWParent node : currentList){               //O(V)
                 if (node.getParent() != null){
                     if (list.getLast().getParent().equals(node.getVertex())){
                         list.add(node);
@@ -123,7 +123,7 @@ public class MaxFlowInput {
         list.add(helper);
 
         LinkedList<Vertex> listRueckgabe = new LinkedList<>();
-        for (NodeWParent node : list){                      //O(E)
+        for (NodeWParent node : list){                      //O(V)
             listRueckgabe.addFirst(node.getVertex());
         }
         return listRueckgabe;
@@ -163,14 +163,10 @@ public class MaxFlowInput {
     public int ford() throws IOException {
 
         while (PfadExistent(Quelle, Senke)){            //Laufzeit Anzahl Kanten mal Laufzeit PfadExistent Methode?
-                                                        //O(E) Laufzeit While, da maximal so viele Pfade wie Kanten
-                                                        //O(V*E) [Laufzeit PfadExistent]
-                                                        //O(E) * ((O(V)*O(E) + (O(V)*O(E) + (O(V)*O(E) + (O(V)*O(E))
-                                                        //=O(E^2*V) + O(E^2*V) + O(E^2*V) + O(E^2*V)
-                                                        //=O(E^2*V)
-                                                        //=O(E^2 * V^2) ???
+                                                        //O(V*E+N^2) [Laufzeit PfadExistent]
+                                                        //gesamt O(While-Schleife)*(O(V*E+N^2))
             int flow = Integer.MAX_VALUE;
-            LinkedList<Vertex> pfad = PfadErstellenBreitensuche(this.Quelle, this.Senke);       //O(V) * O(E)
+            LinkedList<Vertex> pfad = PfadErstellenBreitensuche(this.Quelle, this.Senke);       //O(V) * O(E) + O(N^2)
             int counter = 0;
 
             for (Vertex v : pfad) {                                 //O(V) * O(E)

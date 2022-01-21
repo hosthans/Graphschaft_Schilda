@@ -56,12 +56,12 @@ public class Dijkstra {
 
 
 
-    public void doAlgorithm(){          //O(E^3)
+    public void doAlgorithm(){          //O(V^2) * O(E)
         initialize();
 
 
 
-        while (Q.size() != 0){                      //O(E)*O(E)*O(E)
+        while (Q.size() != 0){                      //O(V^2)*O(E)
             Q.clear();
             for (int i = 0; i < helper.size(); i++){            //O(E)      --> damit Priorität aktualisiert wird
                 Q.add(helper.get(i));
@@ -74,10 +74,10 @@ public class Dijkstra {
 
             List<Node> adjList = graph.graph.get(currentNode.v);
 
-            for (Node v : adjList){                             // O(E)*O(E)         -->alle Nachbarn (können n-1 sein) im Worst Case
+            for (Node v : adjList){                             // O(E)*O(V)         -->alle Nachbarn (können n-1 sein) im Worst Case
                 DijkstraNode ref = null;
 
-                for (int i = 0; i<helper.size(); i++){              //O(E)        --> n-1 da ein Knoten schon entnommen werden musste
+                for (int i = 0; i<helper.size(); i++){              //O(V)        --> n-1 da ein Knoten schon entnommen werden musste
                     if (helper.get(i).getV() == v.getE().dest){
                         ref = helper.get(i);
                     }
