@@ -41,7 +41,7 @@ public class Hierholzer {
 
     //O(E*V)
 
-    public void EulerWeg(){         //O(E*V) + O(V)
+    public void EulerWeg(){         //O(V * E) * O(V) + O(E) = O(V^2 * E) + O(E) = O(V^2 * E)
         //System.out.println("Muss gemacht werden - nicht alle Knoten Geraden Grad");
             int counter = 0;
             //Zufallsknoten als Startknoten wählen (muss ungeraden Grad haben)
@@ -55,7 +55,7 @@ public class Hierholzer {
             Vertex currentcycleStartAEnd = start;
             Vertex currentVertex = currentcycleStartAEnd;
 
-            while (!graph.getEdgeSet().isEmpty()){          //O(E) * O(E) = O(E^2)
+            while (!graph.getEdgeSet().isEmpty()){          //O(V*E) * (2*O(V)) = O(V * E) * O(V) + O(E)
                 LinkedList<Vertex> currentCycleNodes = new LinkedList<Vertex>();
                 LinkedList<Edge> currentCycleEdges = new LinkedList<Edge>();
                 do {
@@ -116,7 +116,7 @@ public class Hierholzer {
 
     }
 
-    public void EulerWegBerechnen(){                //O(V)
+    public void EulerWegBerechnen(){                //O(E)
         System.out.println("EulerWeg");
         //erst ersten Zyklus hinzufügen
 
@@ -126,7 +126,7 @@ public class Hierholzer {
 
 
         //alle anderen Zyklen hinzufügen
-        for (int i  = 1; i<this.cyclesVertex.size(); i++){          //O(V)
+        for (int i  = 1; i<this.cyclesVertex.size(); i++){          //O(E)
             int index = this.eulerCircuitVertieces.indexOf(this.cyclesVertex.get(i).get(0));
 
             this.eulerCircuitVertieces.remove(index);
