@@ -29,6 +29,8 @@ public class maxPairsInput {
     }
 
     public void initialize() throws IOException {
+
+
         for (Vertex v : this.graph.graph.keySet()){
             if (!v.getMember() && v != dest && v!= src){
                 this.graph.addEdge(v, dest, false, 1);

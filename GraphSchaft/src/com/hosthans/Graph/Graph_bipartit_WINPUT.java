@@ -99,6 +99,30 @@ public class Graph_bipartit_WINPUT {
             }
         }
 
+        if (!this.isweighted){
+            for (int i = 0; i<edgecount; i++){
+                //Hier soll addEdge() ausgeführt werden
+                System.out.print("Anfangsknoten: ");
+                BufferedReader anfangsk = new BufferedReader(new InputStreamReader(System.in));
+                String Anfangsknoten = anfangsk.readLine();
+
+                System.out.print("Zielknoten: ");
+                BufferedReader Zielkn = new BufferedReader(new InputStreamReader(System.in));
+                String Zielknoten = anfangsk.readLine();
+
+
+                Integer weight = 0;
+
+
+                addEdge(Knoten.get(Anfangsknoten), Knoten.get(Zielknoten), isbidirectional, weight);
+
+
+
+
+
+            }
+        }
+
     }
 
     public void addDest() throws IOException {

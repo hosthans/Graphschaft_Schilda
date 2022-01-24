@@ -85,7 +85,7 @@ public class Ausführung_Input {
     }
 
     public static void startPaarzuweisung() throws IOException {
-        Graph_bipartit_WINPUT graph = new Graph_bipartit_WINPUT(false, true);
+        Graph_bipartit_WINPUT graph = new Graph_bipartit_WINPUT(false, false);
         maxPairsInput mp = new maxPairsInput(graph);
     }
 
