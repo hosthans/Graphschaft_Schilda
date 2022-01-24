@@ -64,7 +64,7 @@ public class MaxFlowInput {
     //nachdem PFad existiert --> erstellen
     public LinkedList<Vertex> PfadErstellenBreitensuche(Vertex Quelle, Vertex Senke){
 
-                                                        //O(V) * O(E) + O(N^2)
+                                                        //O(V) * O(E) + O(V^2) --> + O(V^2) weil Übergabe noch aufgerufen wird
 
         HashSet<Vertex> visited = new HashSet<>();
         LinkedList<Vertex> queue = new LinkedList<>();
@@ -162,11 +162,17 @@ public class MaxFlowInput {
 
     public int ford() throws IOException {
 
+
+
+        //O(V*E) * O(E)     --> weil maximal E Pfade (While E iterationen)  --> O(V*E^2)
+
+        //Gesamtlaufzeit = O(V*E^2) * [O(V*E) + O(V^2)] = O(V^2*E^3) + O(V^3*E^2)
+
         while (PfadExistent(Quelle, Senke)){            //Laufzeit Anzahl Kanten mal Laufzeit PfadExistent Methode?
                                                         //O(V*E+N^2) [Laufzeit PfadExistent]
-                                                        //gesamt O(While-Schleife)*(O(V*E+N^2))
+
             int flow = Integer.MAX_VALUE;
-            LinkedList<Vertex> pfad = PfadErstellenBreitensuche(this.Quelle, this.Senke);       //O(V) * O(E) + O(N^2)
+            LinkedList<Vertex> pfad = PfadErstellenBreitensuche(this.Quelle, this.Senke);       //O(V) * O(E) + O(V^2) = O(V*E) + O(V^2)
             int counter = 0;
 
             for (Vertex v : pfad) {                                 //O(V) * O(E)

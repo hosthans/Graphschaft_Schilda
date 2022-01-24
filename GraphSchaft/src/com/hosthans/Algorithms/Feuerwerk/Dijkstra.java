@@ -61,7 +61,7 @@ public class Dijkstra {
 
 
 
-        while (Q.size() != 0){                      //O(V^2)*O(E)
+        while (Q.size() != 0){                      //O(V) * [O(E*V)] = O(V^2)*O(E)
             Q.clear();
             for (int i = 0; i < helper.size(); i++){            //O(E)      --> damit Priorität aktualisiert wird
                 Q.add(helper.get(i));

@@ -34,7 +34,7 @@ public class Ausführung_Input {
         System.out.println(ANSI_YELLOW_BACKGROUND + ANSI_BLACK + "(2) Maximaler Fluss eines Netzes bestimmen - inkl. Validierung für vorgegebene Flussgröße");
         System.out.println(ANSI_YELLOW_BACKGROUND + ANSI_BLACK + "(3) Explosionsreihenfolge eines Feuerwerks - basierend auf Zündschnurlänge");
         System.out.println(ANSI_YELLOW_BACKGROUND + ANSI_BLACK + "(4) Auswahl von möglichen Partnern - basierend auf Interesse der Menschen zueinander");
-        System.out.println(ANSI_YELLOW_BACKGROUND + ANSI_BLACK + "(5) Kürzester Weg, bei dem jede Straße nur einmal abgelaufen werden muss");
+        System.out.println(ANSI_YELLOW_BACKGROUND + ANSI_BLACK + "(5) Kürzester Weg, bei dem jede Straße nur einmal abgelaufen werden muss" + ANSI_RED_BACKGROUND + "!Graph muss zusammenhängend sein und darf maximal 2 ungerade Knoten haben!");
         System.out.println(ANSI_YELLOW_BACKGROUND + ANSI_BLACK + "(6) Maximaler Verkehrsfluss in Straßennetz - basierend auf maximalem Fluss jeder Straße");
         System.out.println(ANSI_YELLOW_BACKGROUND + ANSI_BLACK + "(7) Optimale Verteilung von Arbeitspakete an Mitarbeiter - basierend auf deren Kompetenzen");
 
