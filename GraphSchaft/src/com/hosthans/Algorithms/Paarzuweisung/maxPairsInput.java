@@ -275,7 +275,7 @@ public class maxPairsInput {
                 }
             }
         }
-        System.out.println(ANSI_WHITE_BACKGROUND+"Somit hat jeder eine geile Frau die ihm gefällt!");
+        System.out.println(ANSI_WHITE_BACKGROUND+"Somit hat jeder eine Frau die ihm gefällt!");
 
     }
 
